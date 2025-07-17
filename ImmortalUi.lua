@@ -40,10 +40,10 @@ Rayfield:Notify({
    Title = "Rank: Vip",
    Content = "Enjoy",
    Duration = 6.5,
-   Image = House,
+   Image = "star",
 })
 
-local Tab = Window:CreateTab("Main", House) -- Title, Image
+local Tab = Window:CreateTab("Main", "square-mouse-pointer") -- Title, Image
 local Section = Tab:CreateSection("Aimlock")
 
 local Toggle = Tab:CreateToggle({
@@ -636,7 +636,7 @@ workspace.Gravity = s
 })
 
 
-local Tab = Window:CreateTab("Visual", House) -- Title, Image
+local Tab = Window:CreateTab("Visual", "eye")
 local Section = Tab:CreateSection("WallHack")
 
 local Toggle = Tab:CreateToggle({
@@ -908,7 +908,7 @@ local ColorPicker = Tab:CreateColorPicker({
 end
 })
 
-local Tab = Window:CreateTab("Misc", House) -- Title, Image
+local Tab = Window:CreateTab("Misc", "boxes") -- Title, Image
 local Section = Tab:CreateSection("Character")
 
 local Button = Tab:CreateButton({
@@ -967,7 +967,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/H20CalibreYT/SystemBr
 end,
 })  
 
-local Tab = Window:CreateTab("Sky", House) -- Title, Image
+local Tab = Window:CreateTab("Sky", "cloud") -- Title, Image
 local Section = Tab:CreateSection("Sky Custom")
 
 local Button = Tab:CreateButton({
@@ -1053,12 +1053,12 @@ local DayNightKeybind = Tab:CreateKeybind({
     end,
 })
 
-local Tab = Window:CreateTab("Settings/Credits", House) -- Title, Image
+local Tab = Window:CreateTab("Settings/Credits", "settings") -- Title, Image
 local Section = Tab:CreateSection("Credits")
 
 local Label = Tab:CreateLabel("Created by Immortal")
 local Label = Tab:CreateLabel("You rank: Vip")
-local Label = Tab:CreateLabel("!!!FREECAM ON P!!!")
+local Label = Tab:CreateLabel("Freecam on P (eng)")
 local Label = Tab:CreateLabel("Version 2.1 Release")
 
 
