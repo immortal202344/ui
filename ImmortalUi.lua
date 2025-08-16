@@ -1,12 +1,1892 @@
-local v0=loadstring(game:HttpGet("https://sirius.menu/rayfield"))();local v1=v0:CreateWindow({Name="ImmortalUi",Icon=0 + 0 ,LoadingTitle="Vip Cheat",LoadingSubtitle="by Immortal",ShowText="Rayfield",Theme="Ocean",ToggleUIKeybind="F",DisableRayfieldPrompts=false,DisableBuildWarnings=false,ConfigurationSaving={Enabled=False,FolderName=nil,FileName="Big Hub"},Discord={Enabled=false,Invite="noinvitelink",RememberJoins=true},KeySystem=true,KeySettings={Title="Vip Secure",Subtitle="Vip test",Note="Key In https://t.me/Xsoqqviperr",FileName="Key",SaveKey=true,GrabKeyFromSite=false,Key={"Immortal"}}});v0:Notify({Title="Rank: Vip",Content="Enjoy",Duration=24.5 -18 ,Image="star"});local v2=v1:CreateTab("Main","square-mouse-pointer");local v3=v2:CreateSection("Aimlock");local v4=v2:CreateToggle({Name="AimLock",CurrentValue=false,Flag="Toggle1",Callback=function(v114) if v114 then _G.AimBotEnabled=true;local v400=workspace.CurrentCamera;local v401=game:GetService("Players");local v402=v401.LocalPlayer;local v403=game:GetService("UserInputService");local v404=game:GetService("RunService");local v405,v406=0.042 + 0 ,33 -23 ;local v407=false;if  not v402 then return warn("LocalPlayer не найден!");end if  not _G.FOVCircle then local v539=605 -(316 + 289) ;while true do if (v539==1) then _G.FOVCircle.Color,_G.FOVCircle.Transparency,_G.FOVCircle.Visible=Color3.new(2 -1 ,1 + 0 ,1454 -(666 + 787) ),425.7 -(360 + 65) ,true;break;end if (v539==(0 + 0)) then _G.FOVCircle=Drawing.new("Circle");_G.FOVCircle.Radius,_G.FOVCircle.Filled,_G.FOVCircle.Thickness=200,false,255 -(79 + 175) ;v539=1;end end end local function v408() local v469,v470=nil,math.huge;local v471=(_G.FOVCircle and _G.FOVCircle.Radius) or (315 -115) ;for v540,v541 in pairs(v401:GetPlayers()) do if ((v541~=v402) and v541.Character and v541.Character:FindFirstChild("HumanoidRootPart")) then local v601=0;local v602;local v603;local v604;local v605;local v606;while true do if (v601==0) then v602=0 + 0 ;v603=nil;v601=1;end if (v601==1) then v604=nil;v605=nil;v601=5 -3 ;end if (v601==(3 -1)) then v606=nil;while true do if (v602==0) then v603=v541.Character:FindFirstChild("Head");v604,v605=v400:WorldToScreenPoint(v603.Position);v602=1;end if (v602==1) then v606=(Vector2.new(v604.X,v604.Y) -v403:GetMouseLocation()).Magnitude;if (v605 and (v606<=v471) and (v606<v470)) then v469,v470=v541,v606;end break;end end break;end end end end return v469;end local function v409(v472) local v473=899 -(503 + 396) ;local v474;local v475;local v476;while true do if (v473==1) then v476=nil;while true do if (v474==(181 -(92 + 89))) then local v715=0 -0 ;while true do if (v715==1) then v474=1;break;end if (v715==(0 + 0)) then v475=v472.Character.Head;v476=v472.Character.HumanoidRootPart.AssemblyLinearVelocity or Vector3.zero ;v715=1 + 0 ;end end end if (v474==(3 -2)) then return v475.Position + (v476 * v405) ;end end break;end if ((0 + 0)==v473) then v474=0 -0 ;v475=nil;v473=1;end end end v403.InputBegan:Connect(function(v477) if (v477.UserInputType==Enum.UserInputType.MouseButton2) then v407=true;end end);v403.InputEnded:Connect(function(v478) if (v478.UserInputType==Enum.UserInputType.MouseButton2) then v407=false;end end);v404.RenderStepped:Connect(function() local v479=0 + 0 ;local v480;while true do if (v479==(0 + 0)) then v480=0 -0 ;while true do if (v480==1) then if v407 then local v760=0 + 0 ;local v761;while true do if (v760==0) then v761=v408();if v761 then local v817=0 -0 ;local v818;while true do if (v817==0) then v818=v409(v761);v400.CFrame=v400.CFrame:Lerp(CFrame.new(v400.CFrame.Position,v818),v406 * 0.1 );break;end end end break;end end end break;end if (v480==(1244 -(485 + 759))) then if  not _G.AimBotEnabled then return;end if _G.FOVCircle then _G.FOVCircle.Position=v403:GetMouseLocation();end v480=1;end end break;end end end);else local v410=0;local v411;while true do if (v410==(0 -0)) then v411=1189 -(442 + 747) ;while true do if (v411==1) then _G.PredictionFactor=nil;_G.AimSpeed=nil;break;end if (v411==(1135 -(832 + 303))) then _G.AimBotEnabled=false;if _G.FOVCircle then local v734=946 -(88 + 858) ;while true do if ((0 + 0)==v734) then _G.FOVCircle:Remove();_G.FOVCircle=nil;break;end end end v411=1 + 0 ;end end break;end end end end});local v5=v2:CreateInput({Name="AimLock Fov",PlaceholderText="FOV Radius set to:",RemoveTextAfterFocusLost=false,Callback=function(v115) local v116=0 + 0 ;local v117;while true do if (0==v116) then v117=tonumber(v115);if (v117 and _G.FOVCircle) then local v568=789 -(766 + 23) ;while true do if (v568==(0 -0)) then _G.FOVCircle.Radius=math.clamp(v117,10,500);print("FOV Radius set to:",_G.FOVCircle.Radius);break;end end else warn("Invalid input! Please enter a number.");end break;end end end});local v3=v2:CreateSection("AntiAim");local v6=10;local v7=false;local v8=nil;local v9=game:GetService("UserInputService");local function v10() local v118=0 -0 ;local v119;local v120;local v121;while true do if (v118==(2 -1)) then local v481=0;while true do if (v481==0) then v120=v119:FindFirstChildWhichIsA("Humanoid");v121=v119:FindFirstChild("HumanoidRootPart");v481=1;end if (v481==(3 -2)) then v118=2;break;end end end if (v118==(1076 -(1036 + 37))) then return v119,v120,v121;end if ((0 + 0)==v118) then local v482=0 -0 ;while true do if (v482==(1 + 0)) then v118=1481 -(641 + 839) ;break;end if (v482==(913 -(910 + 3))) then v119=game.Players.LocalPlayer.Character;if  not v119 then return nil,nil,nil;end v482=1;end end end if (v118==(4 -2)) then if  not v120 then v120=v119:WaitForChild("Humanoid",1686 -(1466 + 218) );end if  not v121 then v121=v119:WaitForChild("HumanoidRootPart",1 + 1 );end v118=3;end end end local function v11() local v122=1148 -(556 + 592) ;local v123;local v124;local v125;while true do if (v122==(0 + 0)) then v123,v124,v125=v10();if ( not v124 or  not v125) then return;end v122=809 -(329 + 479) ;end if (v122==1) then if (v8 and v9:IsKeyDown(Enum.KeyCode.E)) then v8:Disconnect();v8=nil;v124.AutoRotate=true;return;end if (v7 and  not v8 and  not v9:IsKeyDown(Enum.KeyCode.E)) then local v570=854 -(174 + 680) ;local v571;while true do if (v570==(0 -0)) then v571=0 -0 ;while true do if ((0 + 0)==v571) then v124.AutoRotate=false;v8=game:GetService("RunService").Heartbeat:Connect(function(v771) local v772=739 -(396 + 343) ;while true do if (v772==(0 + 0)) then if ( not v125 or  not v125:IsDescendantOf(workspace)) then local v821=1477 -(29 + 1448) ;while true do if (v821==0) then if v8 then local v845=0;while true do if (v845==0) then v8:Disconnect();v8=nil;break;end end end return;end end end v125.CFrame=v125.CFrame * CFrame.Angles(0,math.rad(v6 * v771 * (1449 -(135 + 1254)) ),0) ;break;end end end);break;end end break;end end end break;end end end v9.InputBegan:Connect(function(v126) if (v126.KeyCode==Enum.KeyCode.E) then local v412=0;local v413;local v414;while true do if (v412==0) then v413,v414=v10();if v414 then v414.AutoRotate=true;end v412=1;end if (v412==(3 -2)) then if v8 then local v640=0;while true do if (v640==(0 -0)) then v8:Disconnect();v8=nil;break;end end end break;end end end end);v9.InputEnded:Connect(function(v127) if ((v127.KeyCode==Enum.KeyCode.E) and v7) then v11();end end);local v4=v2:CreateToggle({Name="Spin-Bot",CurrentValue=false,Flag="SpinToggle",Callback=function(v128) local v129=0;while true do if (v129==(0 + 0)) then v7=v128;if  not v128 then local v572=1527 -(389 + 1138) ;local v573;local v574;local v575;while true do if (v572==(574 -(102 + 472))) then v573=0;v574=nil;v572=1 + 0 ;end if ((1 + 0)==v572) then v575=nil;while true do if (v573==1) then if v575 then v575.AutoRotate=true;end break;end if (v573==(0 + 0)) then if v8 then local v781=1545 -(320 + 1225) ;while true do if (v781==0) then v8:Disconnect();v8=nil;break;end end end v574,v575=v10();v573=1 -0 ;end end break;end end else v11();end break;end end end});local v12=v2:CreateSlider({Name="Spin-Bot Speed",Range={1465 -(157 + 1307) ,598 -358 },Increment=1,Suffix="° per second",CurrentValue=v6,Flag="SpinSpeed",Callback=function(v130) local v131=0 + 0 ;while true do if (v131==(0 -0)) then v6=v130;if v7 then v11();end break;end end end});game.Players.LocalPlayer.CharacterAdded:Connect(function(v132) local v133=0 + 0 ;local v134;while true do if (v133==(2 -1)) then if v7 then local v576=1026 -(834 + 192) ;while true do if (v576==(0 + 0)) then v134.AutoRotate=false;v11();break;end end else v134.AutoRotate=true;end break;end if (v133==0) then v134=v132:WaitForChild("Humanoid",1 + 1 );if  not v134 then return;end v133=1 + 0 ;end end end);local v13=game:GetService("Players");local v14=game:GetService("RunService");local v9=game:GetService("UserInputService");local v15=workspace.CurrentCamera;local v16={Enabled=false,Angle=180,Smoothness=0.15 -0 ,Noise={Enable=true,Intensity=306 -(300 + 4) ,Speed=5}};local v17=v13.LocalPlayer;local v18,v19;local v20=0 + 0 ;local v21=0 -0 ;local v22=v2:CreateToggle({Name="Anti-Aim",CurrentValue=false,Flag="AntiAimToggle",Callback=function(v135) v16.Enabled=v135;end});local v23=v2:CreateSlider({Name="Angle Offset",Range={ -180,180},Increment=2 + 3 ,Suffix="°",CurrentValue=0,Flag="AntiAimAngle",Callback=function(v137) v16.Angle=v137;end});local v24=v2:CreateSlider({Name="Smoothness",Range={0.05 -0 ,0.5},Increment=0.05,CurrentValue=v16.Smoothness,Flag="AntiAimSmoothness",Callback=function(v139) v16.Smoothness=v139;end});local function v25() local v141=0 + 0 ;local v142;while true do if (v141==0) then v142=0 + 0 ;while true do if (v142==(0 + 0)) then v18=v17.Character;if v18 then v19=v18:FindFirstChild("HumanoidRootPart");else v19=nil;end break;end end break;end end end v25();v17.CharacterAdded:Connect(v25);v17.CharacterRemoving:Connect(function() local v143=0;while true do if (v143==(0 + 0)) then v16.Enabled=false;v22:Set(false);break;end end end);v9.InputBegan:Connect(function(v144,v145) if ( not v145 and (v144.KeyCode==v16.ToggleKey)) then local v415=0 + 0 ;local v416;while true do if (v415==(1414 -(1001 + 413))) then v416=0;while true do if (v416==(0 -0)) then v16.Enabled= not v16.Enabled;v22:Set(v16.Enabled);break;end end break;end end end end);v14.Heartbeat:Connect(function() local v146=882 -(244 + 638) ;local v147;local v148;local v149;while true do if ((696 -(627 + 66))==v146) then v19.CFrame=CFrame.new(v19.Position) * CFrame.Angles(0 -0 ,v20,602 -(512 + 90) ) ;break;end if (v146==1) then v148=math.atan2(v147.X,v147.Z);v149=v148 + math.rad(v16.Angle) ;v146=2;end if (v146==(1908 -(1665 + 241))) then if v16.Noise.Enable then v21=v21 + (v16.Noise.Speed * 0.01) ;v149=v149 + (math.sin(v21) * math.rad(v16.Noise.Intensity)) ;end v20=v20 + ((v149-v20) * v16.Smoothness) ;v146=3;end if (v146==0) then if ( not v16.Enabled or  not v19 or  not v15) then return;end v147=v15.CFrame.LookVector;v146=718 -(373 + 344) ;end end end);local v3=v2:CreateSection("MainTabs");local v12=v2:CreateSlider({Name="WalkSpeed",Range={5 + 11 ,300},Increment=2 -1 ,Suffix="Speed",CurrentValue=16,Flag="Slider1",Callback=function(v150) game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=v150;end});local v12=v2:CreateSlider({Name="JumpPower",Range={50,1599 -(35 + 1064) },Increment=1,Suffix="Power",CurrentValue=37 + 13 ,Flag="Slider1",Callback=function(v152) game.Players.LocalPlayer.Character.Humanoid.JumpPower=v152;end});local v13=game:GetService("Players");local v9=game:GetService("UserInputService");local v14=game:GetService("RunService");local v16={AIR_FORCE=641 -341 ,GROUND_BRAKE=0.4 + 0 ,JUMP_POWER=50,TURN_SPEED=1244 -(298 + 938) ,MAX_SPEED=1759 -(233 + 1026) };local v17=v13.LocalPlayer;local v18=v17.Character or v17.CharacterAdded:Wait() ;local v26=v18:WaitForChild("Humanoid");local v27=v18:WaitForChild("HumanoidRootPart");local v28=false;local v29=false;local function v30() local v154=workspace.CurrentCamera;return Vector3.new(v154.CFrame.LookVector.X,1666 -(636 + 1030) ,v154.CFrame.LookVector.Z).Unit;end v14.Heartbeat:Connect(function(v155) local v156=0;local v157;local v158;local v159;while true do if ((2 + 1)==v156) then if ( not v158 and v159) then local v578=0 + 0 ;local v579;local v580;while true do if ((1 + 1)==v578) then v27.Velocity=Vector3.new(v580.X,v579.Y,v580.Z);break;end if (v578==(0 + 0)) then v27.CFrame=CFrame.new(v27.Position,v27.Position + v157 );v579=v27.Velocity + (v157 * v16.AIR_FORCE * v155) ;v578=222 -(55 + 166) ;end if (v578==(1 + 0)) then v580=Vector3.new(v579.X,0 + 0 ,v579.Z);if (v580.Magnitude>v16.MAX_SPEED) then v580=v580.Unit * v16.MAX_SPEED ;end v578=7 -5 ;end end end v29=v158;break;end if (1==v156) then local v486=297 -(36 + 261) ;while true do if (v486==(1 -0)) then v156=1370 -(34 + 1334) ;break;end if (v486==(0 + 0)) then v158=v26:GetState()==Enum.HumanoidStateType.Landed ;v159=v9:IsKeyDown(Enum.KeyCode.Space);v486=1 + 0 ;end end end if ((1283 -(1035 + 248))==v156) then if  not v28 then return;end v157=v30();v156=1;end if ((23 -(20 + 1))==v156) then if (v158 and  not v29) then local v581=0 + 0 ;local v582;while true do if (v581==0) then v582=v27.Velocity;v27.Velocity=Vector3.new(v582.X * v16.GROUND_BRAKE ,v582.Y,v582.Z * v16.GROUND_BRAKE );break;end end end if (v158 and v159) then local v583=319 -(134 + 185) ;while true do if (v583==0) then v26.JumpPower=v16.JUMP_POWER;v26:ChangeState(Enum.HumanoidStateType.Jumping);break;end end end v156=3;end end end);local v4=v2:CreateToggle({Name="Bunnyhop",CurrentValue=false,Flag="BHopToggle",Callback=function(v160) local v161=1133 -(549 + 584) ;local v162;while true do if ((685 -(314 + 371))==v161) then v162=0 -0 ;while true do if (v162==0) then v28=v160;if  not v160 then v26.JumpPower=1018 -(478 + 490) ;end break;end end break;end end end});local v12=v2:CreateSlider({Name="HipHeight",Range={0,50},Increment=1,Suffix="HipHeight",CurrentValue=0,Flag="Slider1",Callback=function(v163) game.Players.LocalPlayer.Character.Humanoid.HipHeight=v163;end});local v31=v2:CreateButton({Name="AntiFling",Callback=function() local v165=setmetatable({},{__index=function(v325,v326) local v327=0;local v328;while true do local v417=0;while true do if (v417==(0 + 0)) then if (v327==(1172 -(786 + 386))) then v328=game.GetService(game,v326);if v328 then v325[v326]=v328;end v327=3 -2 ;end if (v327==1) then return v328;end break;end end end end});local v166=v165.Players.LocalPlayer;local function v167(v329) local v330=1379 -(1055 + 324) ;local v331;local v332;local v333;local v334;while true do if (v330==(1342 -(1093 + 247))) then function v334(v584) local v585=0;local v586;while true do if (v585==0) then v586=0 + 0 ;while true do if (v586==(0 + 0)) then v332=v584;repeat local v773=0;local v774;while true do if (v773==(0 -0)) then v774=0 -0 ;while true do if (v774==(0 -0)) then wait();v333=v584:FindFirstChild("HumanoidRootPart");break;end end break;end end until v333 v586=1;end if (v586==(2 -1)) then v331=false;break;end end break;end end end v334(v329.Character or v329.CharacterAdded:Wait() );v330=2 + 1 ;end if (v330==3) then v329.CharacterAdded:Connect(v334);v165.RunService.Heartbeat:Connect(function() if (v332 and v332:IsDescendantOf(workspace) and v333 and v333:IsDescendantOf(v332)) then if ((v333.AssemblyAngularVelocity.Magnitude>(192 -142)) or (v333.AssemblyLinearVelocity.Magnitude>100)) then local v717=0 -0 ;while true do if (v717==(1 + 0)) then for v782,v783 in ipairs(v332:GetDescendants()) do if v783:IsA("BasePart") then local v805=0 -0 ;while true do if (v805==(688 -(364 + 324))) then v783.CanCollide=false;v783.AssemblyAngularVelocity=Vector3.new(0 -0 ,0 -0 ,0 + 0 );v805=4 -3 ;end if (v805==(1 -0)) then v783.AssemblyLinearVelocity=Vector3.new(0,0,0 -0 );v783.CustomPhysicalProperties=PhysicalProperties.new(0,1268 -(1249 + 19) ,0);break;end end end end v333.CanCollide=false;v717=2;end if (v717==2) then v333.AssemblyAngularVelocity=Vector3.new(0 + 0 ,0 -0 ,1086 -(686 + 400) );v333.AssemblyLinearVelocity=Vector3.new(0,0 + 0 ,0);v717=232 -(73 + 156) ;end if (v717==(1 + 2)) then v333.CustomPhysicalProperties=PhysicalProperties.new(811 -(721 + 90) ,0 + 0 ,0 -0 );break;end if (v717==(470 -(224 + 246))) then if (v331==false) then end v331=true;v717=1 -0 ;end end end end end);break;end if (v330==(0 -0)) then v331=false;v332=nil;v330=1;end if (v330==1) then local v542=0 + 0 ;while true do if (v542==(1 + 0)) then v330=2;break;end if (v542==(0 + 0)) then v333=nil;v334=nil;v542=1;end end end end end for v335,v336 in ipairs(v165.Players:GetPlayers()) do if (v336~=v166) then v167(v336);end end v165.Players.PlayerAdded:Connect(v167);local v168=nil;v165.RunService.Heartbeat:Connect(function() pcall(function() local v418=0 -0 ;local v419;while true do if (v418==0) then v419=v166.Character.PrimaryPart;if ((v419.AssemblyLinearVelocity.Magnitude>(831 -581)) or (v419.AssemblyAngularVelocity.Magnitude>(763 -(203 + 310)))) then local v641=0;local v642;while true do if (0==v641) then v642=0;while true do if (v642==0) then v419.AssemblyAngularVelocity=Vector3.new(1993 -(1238 + 755) ,0,0 + 0 );v419.AssemblyLinearVelocity=Vector3.new(1534 -(709 + 825) ,0,0 -0 );v642=1 -0 ;end if (v642==(865 -(196 + 668))) then v419.CFrame=v168;break;end end break;end end elseif ((v419.AssemblyLinearVelocity.Magnitude<(197 -147)) or (v419.AssemblyAngularVelocity.Magnitude>50)) then v168=v419.CFrame;end break;end end end);end);end});local v31=v2:CreateButton({Name="Float Pad",Callback=function() local v169=game.Players.LocalPlayer.Name;local v170=Instance.new("Part");v170.Parent=workspace;v170.Locked=true;v170.BrickColor=BrickColor.new("White");v170.BrickColor=BrickColor.new(104);local v174=Color3.fromRGB(255,0 -0 ,970 -(171 + 662) );v170.Size=Vector3.new(101 -(4 + 89) ,3.2 -2 ,3 + 5 );v170.Anchored=true;local v177=Instance.new("CylinderMesh");v177.Scale=Vector3.new(1,0.5 -0 ,1 + 0 );v177.Parent=v170;while true do local v337=0;while true do if (v337==(1486 -(35 + 1451))) then v170.CFrame=CFrame.new(game.Players:findFirstChild(v169).Character.HumanoidRootPart.CFrame.x,game.Players:findFirstChild(v169).Character.HumanoidRootPart.CFrame.y-4 ,game.Players:findFirstChild(v169).Character.HumanoidRootPart.CFrame.z);wait();break;end end end end});local v12=v2:CreateSlider({Name="Gravity",Range={1993 -(941 + 1052) ,288 + 12 },Increment=1515 -(822 + 692) ,Suffix="Gravity",CurrentValue=279.2 -83 ,Flag="Slider1",Callback=function(v180) workspace.Gravity=v180;end});local v2=v1:CreateTab("Visual","eye");local v3=v2:CreateSection("WallHack");local v4=v2:CreateToggle({Name="Chams",CurrentValue=false,Flag="Toggle1",Callback=function(v182) if v182 then local v420=loadstring(game:HttpGet("https://raw.githubusercontent.com/ThirdScripts/ChamsTeamColor/refs/heads/main/ChamsColorTeam.lua"))();else local v421=0;while true do if (v421==0) then _G.ESP_Enabled=false;for v609,v610 in ipairs(game:GetService("Players"):GetPlayers()) do if v610.Character then for v719,v720 in ipairs(v610.Character:GetChildren()) do if v720:IsA("Highlight") then v720:Destroy();end end end end break;end end end end});local v31=v2:CreateButton({Name="Skelet Esp",Callback=function() loadstring(game:HttpGet("https://raw.githubusercontent.com/ThirdScripts/ESPSkeletMod/refs/heads/main/ESPSkelet.lua"))();end});local v31=v2:CreateButton({Name="Esp",Callback=function() local v183=loadstring(game:HttpGet("https://raw.githubusercontent.com/ThirdScripts/ESPteamcolor/refs/heads/main/ESP.lua"))();end});local v3=v2:CreateSection("Visual");local v12=v2:CreateSlider({Name="Zoom",Range={5,2000},Increment=5 + 0 ,Suffix="CameraMaxZoomDistance",CurrentValue=43 + 81 ,Flag="Slider1",Callback=function(v184) game.Players.LocalPlayer.CameraMaxZoomDistance=v184;end});local v31=v2:CreateButton({Name="Ghost",Callback=function() local v186=0;while true do if (v186==(0 -0)) then function nob(v544,v545,v546) local v547=0;while true do if (v547==(437 -(114 + 319))) then h.Health=50000;h.WalkSpeed=32;break;end if (v547==(0 -0)) then c=v544.Character;pcall(function() local v685=0 -0 ;local v686;while true do if (v685==0) then v686=0;while true do if (v686==(2 + 1)) then u.RightArmColor=BrickColor.new("Black");break;end if (v686==(1 -0)) then u.LeftLegColor=BrickColor.new("Black");u.RightLegolor=BrickColor.new("Black");v686=3 -1 ;end if (v686==0) then u=c["Body Colors"];u.HeadColor=BrickColor.new("Black");v686=1964 -(556 + 1407) ;end if (v686==(1208 -(741 + 465))) then u.LeftArmColor=BrickColor.new("Black");u.TorsoColor=BrickColor.new("Black");v686=3;end end break;end end end);pcall(function() local v687=465 -(170 + 295) ;while true do if (v687==0) then c.Shirt:Destroy();c.Pants:Destroy();break;end end end);v547=1 + 0 ;end if (v547==(1 + 0)) then for v688,v689 in pairs(c:GetChildren()) do if v689:IsA("BasePart") then local v735=0 -0 ;while true do if (v735==(0 + 0)) then v689.Transparency=v545;if ((v689.Name=="HumanoidRootPart") or (v689.Name=="Head")) then v689.Transparency=1 + 0 ;end v735=1 + 0 ;end if (v735==(1231 -(957 + 273))) then wait();v689.BrickColor=BrickColor.new("Black");break;end end elseif v689:IsA("Hat") then v689:Destroy();end end xx=game:service("InsertService"):LoadAsset(v546);xy=game:service("InsertService"):LoadAsset(12687 + 34746 )['LinkedSword'];v547=2;end if (v547==2) then xy.Parent=v544.Backpack;for v690,v691 in pairs(xx:children()) do v691.Parent=c;end xx:Destroy();v547=2 + 1 ;end if (v547==3) then h=v544.Character.Humanoid;h.MaxHealth=190522 -140522 ;wait(2.5 -1 );v547=4;end end end nob(game.Players.LocalPlayer,0.6,64358470 -43288458 );break;end end end});local v4=v2:CreateToggle({Name="Blur",CurrentValue=false,Flag="Toggle1",Callback=function(v187) if v187 then local v422=loadstring(game:HttpGet("https://raw.githubusercontent.com/ThirdScripts/Blur/refs/heads/main/blur.lua"))();else game:GetService("Lighting"):ClearAllChildren();end end});local v12=v2:CreateSlider({Name="Resolution",Range={0 -0 ,1 + 0 },Increment=0.1 + 0 ,Suffix="Resolution",CurrentValue=1,Flag="Slider1",Callback=function(v188) getgenv().Resolution={[".gg/scripters"]=v188};local v190=workspace.CurrentCamera;if (getgenv().gg_scripters==nil) then game:GetService("RunService").RenderStepped:Connect(function() v190.CFrame=v190.CFrame * CFrame.new(0 -0 ,951 -(783 + 168) ,0,1,0 -0 ,0 + 0 ,0,getgenv().Resolution[".gg/scripters"],311 -(309 + 2) ,0 -0 ,0,1) ;end);end getgenv().gg_scripters="Aori0001";end});local v4=v2:CreateToggle({Name="Fullbright",CurrentValue=false,Flag="Toggle1",Callback=function(v192) if v192 then local v423=1212 -(1090 + 122) ;local v424;while true do if (v423==(0 + 0)) then _G.LightingEnabled=true;v424=game:GetService("Lighting");v423=1;end if (v423==(3 -2)) then if _G.LightingEnabled then local v651=0 + 0 ;while true do if ((1121 -(628 + 490))==v651) then v424:GetPropertyChangedSignal("OutdoorAmbient"):Connect(function() if _G.LightingEnabled then v424.OutdoorAmbient=Color3.new(1,1 + 0 ,1);end end);v424:GetPropertyChangedSignal("FogEnd"):Connect(function() if _G.LightingEnabled then v424.FogEnd=10000000000;end end);break;end if (v651==0) then v424.Ambient=Color3.new(2 -1 ,4 -3 ,1);v424.Brightness=776 -(431 + 343) ;v651=1 -0 ;end if (v651==(2 -1)) then v424.OutdoorAmbient=Color3.new(1 + 0 ,1 + 0 ,1696 -(556 + 1139) );v424.FogEnd=10000000015 -(6 + 9) ;v651=1 + 1 ;end if (v651==(2 + 0)) then v424:GetPropertyChangedSignal("Ambient"):Connect(function() if _G.LightingEnabled then v424.Ambient=Color3.new(1,170 -(28 + 141) ,1);end end);v424:GetPropertyChangedSignal("Brightness"):Connect(function() if _G.LightingEnabled then v424.Brightness=1 + 1 ;end end);v651=3;end end end break;end end else local v425=0;local v426;while true do if ((0 -0)==v425) then _G.LightingEnabled=false;v426=game:GetService("Lighting");v425=1 + 0 ;end if (v425==(1319 -(486 + 831))) then v426.OutdoorAmbient=Color3.new(0.7 -0 ,0.7 -0 ,0.7 + 0 );v426.FogEnd=316198 -216198 ;break;end if (v425==1) then v426.Ambient=Color3.new(1263.7 -(668 + 595) ,0.7 + 0 ,0.7 + 0 );v426.Brightness=2 -1 ;v425=292 -(23 + 267) ;end end end end});local v13=game:GetService("Players");local v17=v13.LocalPlayer;local v32=Color3.fromRGB(255,1944 -(1129 + 815) ,137);local v33=true;local function v34(v193) local v194=387 -(371 + 16) ;local v195;local v196;local v197;local v198;local v199;while true do if (v194==6) then local v488=1750 -(1326 + 424) ;while true do if (v488==(0 -0)) then v198.Parent=v196;v199=Instance.new("Highlight",v196);v488=3 -2 ;end if (v488==(119 -(88 + 30))) then v199.FillColor=v32;v194=7;break;end end end if (v194==5) then v198.Part1=v196;v198.C0=CFrame.new(0,771.9 -(720 + 51) ,0);v196.Parent=v193;v194=13 -7 ;end if (v194==3) then local v492=0;while true do if (v492==(1776 -(421 + 1355))) then v197=Instance.new("SpecialMesh",v196);v197.MeshType=Enum.MeshType.FileMesh;v492=1;end if (v492==(1 -0)) then v197.MeshId="rbxassetid://1033714";v194=2 + 2 ;break;end end end if (v194==1) then local v493=0;while true do if (v493==(1084 -(286 + 797))) then v196.BrickColor=BrickColor.new("White");v194=2;break;end if ((0 -0)==v493) then v196=Instance.new("Part");v196.Size=Vector3.new(1 -0 ,1,440 -(397 + 42) );v493=1 + 0 ;end end end if (v194==(804 -(24 + 776))) then v197.Scale=Vector3.new(1.7,1.1 -0 ,786.7 -(222 + 563) );v198=Instance.new("Weld");v198.Part0=v195;v194=11 -6 ;end if ((2 + 0)==v194) then v196.Transparency=190.3 -(23 + 167) ;v196.Anchored=false;v196.CanCollide=false;v194=1801 -(690 + 1108) ;end if (v194==0) then local v499=0 + 0 ;while true do if (v499==(1 + 0)) then if  not v195 then return;end v194=849 -(40 + 808) ;break;end if (v499==(0 + 0)) then if  not v32 then return;end v195=v193:FindFirstChild("Head");v499=3 -2 ;end end end if ((7 + 0)==v194) then local v500=0 + 0 ;while true do if (v500==0) then v199.FillTransparency=0.5 + 0 ;v199.OutlineColor=v32;v500=1;end if (v500==(572 -(47 + 524))) then v199.OutlineTransparency=0;v194=6 + 2 ;break;end end end if (v194==(21 -13)) then v33=true;break;end end end local function v35(v200) if v33 then v34(v200);end end v17.CharacterAdded:Connect(v35);if v17.Character then v35(v17.Character);end local v36=v2:CreateColorPicker({Name="China hat",Color=Color3.fromRGB(255,381 -126 ,581 -326 ),Flag="ColorPicker1",Callback=function(v201) local v202=0;while true do if (v202==(1726 -(1165 + 561))) then v32=v201;if (v17.Character and  not v33) then v34(v17.Character);elseif (v17.Character and v33) then for v693,v694 in ipairs(v17.Character:GetChildren()) do if (v694:IsA("Part") and v694:FindFirstChild("Highlight")) then local v740=0 + 0 ;local v741;while true do if (v740==(3 -2)) then v741.OutlineColor=v32;break;end if (v740==(0 + 0)) then v741=v694:FindFirstChild("Highlight");v741.FillColor=v32;v740=480 -(341 + 138) ;end end end end end break;end end end});local v2=v1:CreateTab("Misc","boxes");local v3=v2:CreateSection("Character");local v31=v2:CreateButton({Name="Reset",Callback=function() game.workspace[game.Players.LocalPlayer.Name].Head:Destroy();end});local v31=v2:CreateButton({Name="Destroy shirt and paints",Callback=function() local v203=0 + 0 ;while true do if (v203==0) then game.Players.LocalPlayer.Character.Shirt:destroy();game.Players.LocalPlayer.Character.Pants:destroy();break;end end end});local v3=v2:CreateSection("Tools");local v31=v2:CreateButton({Name="JerkOff (r6)",Callback=function() loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))("Spider Script");end});local v31=v2:CreateButton({Name="Click TP",Callback=function() local v204=0;local v205;while true do if (v204==0) then v205=0 -0 ;while true do if (v205==2) then tool.Activated:connect(function() local v652=326 -(89 + 237) ;local v653;while true do if ((3 -2)==v652) then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame=v653;break;end if (v652==(0 -0)) then v653=mouse.Hit + Vector3.new(881 -(581 + 300) ,2.5,0) ;v653=CFrame.new(v653.X,v653.Y,v653.Z);v652=1221 -(855 + 365) ;end end end);tool.Parent=game.Players.LocalPlayer.Backpack;break;end if (v205==(0 -0)) then mouse=game.Players.LocalPlayer:GetMouse();tool=Instance.new("Tool");v205=1 + 0 ;end if ((1236 -(1030 + 205))==v205) then tool.RequiresHandle=false;tool.Name="Click Teleport";v205=2;end end break;end end end});local v3=v2:CreateSection("Scripts");local v31=v2:CreateButton({Name="Infinite Yield",Callback=function() loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))();end});local v31=v2:CreateButton({Name="System Broken",Callback=function() loadstring(game:HttpGet("https://raw.githubusercontent.com/H20CalibreYT/SystemBroken/main/script"))();end});local v2=v1:CreateTab("Sky","cloud");local v3=v2:CreateSection("Sky Custom");local v31=v2:CreateButton({Name="Moon Sky",Callback=function() local v206=0 + 0 ;local v207;local v208;local v209;local v210;while true do if (v206==(3 + 0)) then v207.SunTextureId="";v207.MoonTextureId="";v207.Parent=game.Lighting;v206=290 -(156 + 130) ;end if ((17 -9)==v206) then v210.TextSize=21 -8 ;v210.TextXAlignment=Enum.TextXAlignment.Left;v210.Parent=v209;break;end if (v206==(7 -3)) then local v509=0 + 0 ;while true do if (v509==(1 + 0)) then v209.Name="SkyboxChangerLabelUI";v206=74 -(10 + 59) ;break;end if (v509==(0 + 0)) then v208=game.Players.LocalPlayer;v209=Instance.new("ScreenGui");v509=1;end end end if (2==v206) then local v510=0 -0 ;while true do if (v510==(1164 -(671 + 492))) then v207.SunAngularSize=21;v206=3 + 0 ;break;end if (v510==(1215 -(369 + 846))) then v207.SkyboxRt="rbxassetid://159454300";v207.SkyboxUp="rbxassetid://159454288";v510=1 + 0 ;end end end if (v206==(6 + 1)) then v210.Text="";v210.TextColor3=Color3.new(1,1946 -(1036 + 909) ,1);v210.Font=Enum.Font.Code;v206=7 + 1 ;end if (v206==(9 -3)) then v210.Size=UDim2.new(203 -(11 + 192) ,230,0 + 0 ,193 -(135 + 40) );v210.Position=UDim2.new(0 -0 ,10,0,5 + 3 );v210.BackgroundTransparency=2 -1 ;v206=9 -2 ;end if (v206==(177 -(50 + 126))) then local v518=0;while true do if (v518==(2 -1)) then v207.SkyboxLf="rbxassetid://159454286";v206=2;break;end if (v518==0) then v207.SkyboxDn="rbxassetid://159454296";v207.SkyboxFt="rbxassetid://159454293";v518=1;end end end if (v206==(0 + 0)) then v207=Instance.new("Sky");v207.Name="ColorfulSky";v207.SkyboxBk="rbxassetid://159454299";v206=1;end if (v206==(1418 -(1233 + 180))) then v209.ResetOnSpawn=false;v209.Parent=v208:WaitForChild("PlayerGui");v210=Instance.new("TextLabel");v206=975 -(522 + 447) ;end end end});local v3=v2:CreateSection("Sky Settings");local v37=game:GetService("Lighting");local v9=game:GetService("UserInputService");local v37=game:GetService("Lighting");local v9=game:GetService("UserInputService");local v38={ClockTime=14,Ambient=Color3.fromRGB(1599 -(107 + 1314) ,83 + 95 ,542 -364 )};local v39={ClockTime=0 + 0 ,Ambient=Color3.fromRGB(50,50,99 -49 )};local v40=true;local function v41() local v211=0 -0 ;local v212;while true do if (v211==(1910 -(716 + 1194))) then v212=0;while true do if (v212==(0 + 0)) then v40= not v40;if v40 then for v721,v722 in pairs(v38) do v37[v721]=v722;end else for v724,v725 in pairs(v39) do v37[v724]=v725;end end break;end end break;end end end local v42=v2:CreateKeybind({Name="Day/Night",CurrentKeybind="K",HoldToInteract=false,Flag="DayNightKeybind",Callback=function() v41();end});local v2=v1:CreateTab("Settings/Credits","settings");local v3=v2:CreateSection("Credits");local v43=v2:CreateLabel("Created by Immortal");local v43=v2:CreateLabel("You rank: Vip");local v43=v2:CreateLabel("Freecam on P (eng)");local v43=v2:CreateLabel("Version 2.1 Release");local v3=v2:CreateSection("Settings");local v31=v2:CreateButton({Name="Unlock Camera",Callback=function() v13.LocalPlayer.CameraMode=Enum.CameraMode.Classic;end});local v31=v2:CreateButton({Name="Keystrokes",Callback=function() loadstring(game:HttpGet("https://github.com/TheXploiterYT/scripts/raw/main/keystrokes",true))();end});local v44=math.pi;local v45=math.abs;local v46=math.clamp;local v47=math.exp;local v48=math.rad;local v49=math.sign;local v50=math.sqrt;local v51=math.tan;local v52=game:GetService("ContextActionService");local v13=game:GetService("Players");local v14=game:GetService("RunService");local v53=game:GetService("StarterGui");local v9=game:GetService("UserInputService");local v54=game:GetService("Workspace");local v55=UserSettings();local v56=v55.GameSettings;local v37=game:GetService("Lighting");local v57=v13.LocalPlayer;if  not v57 then local v338=0 + 0 ;while true do if (v338==(503 -(74 + 429))) then v13:GetPropertyChangedSignal("LocalPlayer"):Wait();v57=v13.LocalPlayer;break;end end end local v15=v54.CurrentCamera;v54:GetPropertyChangedSignal("CurrentCamera"):Connect(function() local v215=0;local v216;while true do if (v215==(0 -0)) then v216=v54.CurrentCamera;if v216 then v15=v216;end break;end end end);local v58=nil;local v59;do local v217=0;local v218;local v219;local v220;while true do if (v217==(0 + 0)) then v218=0 -0 ;v219=nil;v217=1 + 0 ;end if (v217==1) then v220=nil;while true do if (v218==0) then v219,v220=pcall(function() return UserSettings():IsUserFeatureEnabled("UserExitFreecamBreaksWithShiftlock");end);v59=v219 and v220 ;break;end end break;end end end local v60;do local v221=0 -0 ;local v222;local v223;local v224;while true do if (1==v221) then v224=nil;while true do if (v222==(0 -0)) then v223,v224=pcall(function() return UserSettings():IsUserFeatureEnabled("UserShowGuiHideToggles");end);v60=v223 and v224 ;break;end end break;end if (v221==(433 -(279 + 154))) then v222=0;v223=nil;v221=779 -(454 + 324) ;end end end local v61;do local v225=0 + 0 ;local v226;local v227;local v228;while true do if (v225==(18 -(12 + 5))) then v228=nil;while true do if (v226==0) then v227,v228=pcall(function() return UserSettings():IsUserFeatureEnabled("UserFixFreecamDeltaTimeCalculation");end);v61=v227 and v228 ;break;end end break;end if ((0 + 0)==v225) then v226=0 -0 ;v227=nil;v225=1 + 0 ;end end end local v62;do local v229=0;local v230;local v231;while true do if (v229==0) then v230,v231=pcall(function() return UserSettings():IsUserFeatureEnabled("UserFixFreecamGuiChangeVisibility");end);v62=v230 and v231 ;break;end end end local v63;do local v232=0;local v233;local v234;while true do if (v232==0) then v233,v234=pcall(function() return UserSettings():IsUserFeatureEnabled("UserFreecamControlSpeed");end);v63=v233 and v234 ;break;end end end local v64;do local v235=1093 -(277 + 816) ;local v236;local v237;while true do if (v235==(0 -0)) then v236,v237=pcall(function() return UserSettings():IsUserFeatureEnabled("UserFreecamTiltControl");end);v64=v236 and v237 ;break;end end end local v65;do local v238=1183 -(1058 + 125) ;local v239;local v240;local v241;while true do if (v238==1) then v241=nil;while true do if (v239==(0 + 0)) then v240,v241=pcall(function() return UserSettings():IsUserFeatureEnabled("UserFreecamSmoothnessControl");end);v65=v240 and v241 ;break;end end break;end if (v238==(975 -(815 + 160))) then v239=0 -0 ;v240=nil;v238=1;end end end local v66;do local v242=0;local v243;local v244;local v245;while true do if (v242==0) then v243=0;v244=nil;v242=2 -1 ;end if (v242==1) then v245=nil;while true do if (v243==(0 + 0)) then v244,v245=pcall(function() return UserSettings():IsUserFeatureEnabled("UserFreecamGuiDestabilization");end);v66=v244 and v245 ;break;end end break;end end end local v67;do local v246=0 -0 ;local v247;local v248;while true do if ((1898 -(41 + 1857))==v246) then v247,v248=pcall(function() return UserSettings():IsUserFeatureEnabled("UserFreecamDepthOfFieldEffect");end);v67=v247 and v248 ;break;end end end local v68="FreecamEnabled";local v69=Enum.ContextActionPriority.Low.Value;local v70=Enum.ContextActionPriority.High.Value;local v71={Enum.KeyCode.P};local v72={[Enum.KeyCode.Z]=true,[Enum.KeyCode.C]=true};local v73={[Enum.KeyCode.ButtonL1]=true,[Enum.KeyCode.ButtonR1]=true};local v74={[Enum.KeyCode.BackSlash]=true};local v75=Vector3.new(2 -1 ,1 -0 ,1) * (1246 -(229 + 953)) ;local v76=Vector2.new(1774.75 -(1111 + 663) ,1580 -(874 + 705) ) * 8 ;local v77=42 + 258 ;local v78= -v44/(2 + 0) ;local v79=v48(187 -97 );local v80=1.5;local v81=1;local v82=1 + 3 ;local v83=680 -(642 + 37) ;local v84=0.75;local v85=0.75;local v86=0.75 + 0 ;local v87=0.75;local v88=0.01 + 0 ;local v89=0.01 -0 ;local v90=454.01 -(233 + 221) ;local v91=0.01 -0 ;local v92=9 + 1 ;local v93=1551 -(718 + 823) ;local v94=7 + 3 ;local v95=10;local v96={};local v97=805 -(266 + 539) ;local v98=0.25;local v99=0.1 -0 ;local v100={};local v101={};do v101.__index=v101;v101.new=function(v339,v340) local v341=1225 -(636 + 589) ;local v342;while true do local v427=0;while true do if (0==v427) then if ((2 -1)==v341) then v342.p=v340;v342.v=v340 * (0 -0) ;v341=2 + 0 ;end if ((0 + 0)==v341) then v342=setmetatable({},v101);v342.f=v339;v341=1016 -(657 + 358) ;end v427=2 -1 ;end if (1==v427) then if (v341==(4 -2)) then return v342;end break;end end end end;v101.Update=function(v343,v344,v345) local v346=0;local v347;local v348;local v349;local v350;local v351;local v352;local v353;while true do local v428=0;while true do if ((1188 -(1151 + 36))==v428) then if (v346==(4 + 0)) then local v657=0 + 0 ;while true do if (v657==0) then v343.v=v353;return v352;end end end if (v346==1) then local v658=0 -0 ;while true do if (v658==(1832 -(1552 + 280))) then v349=v343.v;v350=v345-v348 ;v658=1;end if ((835 -(64 + 770))==v658) then v346=2 + 0 ;break;end end end v428=4 -2 ;end if (v428==(0 + 0)) then if (v346==(1246 -(157 + 1086))) then local v659=0 -0 ;while true do if (v659==0) then v353=((v347 * v344 * ((v350 * v347) -v349)) + v349) * v351 ;v343.p=v352;v659=4 -3 ;end if (v659==1) then v346=5 -1 ;break;end end end if (v346==(0 -0)) then v347=v343.f * (821 -(599 + 220)) * v44 ;v348=v343.p;v346=1 -0 ;end v428=1;end if (v428==(1933 -(1813 + 118))) then if ((2 + 0)==v346) then v351=v47( -v347 * v344 );v352=v345 + (((v349 * v344) -(v350 * ((v347 * v344) + 1))) * v351) ;v346=3;end break;end end end end;v101.SetFreq=function(v354,v355) v354.f=v355;end;v101.Reset=function(v357,v358) local v359=1217 -(841 + 376) ;while true do if (v359==0) then v357.p=v358;v357.v=v358 * (0 -0) ;break;end end end;end local v102=Vector3.new();local v103;if v64 then v103=Vector3.new();else v103=Vector2.new();end local v104=0;local v105=v101.new(v80,Vector3.new());local v106=v101.new(v81,Vector2.new());local v107=v101.new(v82,0 + 0 );local v108=v101.new(v83,0 -0 );local v5={};do local v254;do local v360=859 -(464 + 395) ;local v361;local v362;local v363;local v364;local v365;while true do if (v360==2) then v365=nil;while true do if (v361==(5 -3)) then v365=nil;function v365(v695) return v364((v695-v363)/((1 + 0) -v363) );end v361=840 -(467 + 370) ;end if (v361==3) then function v254(v696) return v49(v696) * v46(v365(v45(v696)),0 -0 ,1 + 0 ) ;end break;end if (v361==(0 -0)) then local v661=0 + 0 ;while true do if (v661==(2 -1)) then v361=1;break;end if (v661==0) then v362=2;v363=520.15 -(150 + 370) ;v661=1;end end end if (v361==(1283 -(74 + 1208))) then local v662=0 -0 ;while true do if (v662==(0 -0)) then v364=nil;function v364(v763) return (v47(v362 * v763 ) -(1 + 0))/(v47(v362) -(391 -(14 + 376))) ;end v662=1 -0 ;end if (v662==1) then v361=2 + 0 ;break;end end end end break;end if (v360==0) then v361=0;v362=nil;v360=1;end if ((1 + 0)==v360) then v363=nil;v364=nil;v360=2 + 0 ;end end end local v255={ButtonX=0,ButtonY=0 -0 ,DPadDown=0,DPadUp=0 + 0 ,DPadLeft=78 -(23 + 55) ,DPadRight=0 -0 ,ButtonL2=0 + 0 ,ButtonR2=0 + 0 ,ButtonL1=0,ButtonR1=0,Thumbstick1=Vector2.new(),Thumbstick2=Vector2.new()};local v256={W=0 -0 ,A=0,S=0 + 0 ,D=0,E=0,Q=901 -(652 + 249) ,U=0 -0 ,H=0,J=1868 -(708 + 1160) ,K=0,I=0 -0 ,Y=0,Up=0,Down=0,Left=0 -0 ,Right=0,LeftShift=27 -(10 + 17) ,RightShift=0 + 0 ,Z=0,C=1732 -(1400 + 332) ,Comma=0 -0 ,Period=1908 -(242 + 1666) ,LeftBracket=0 + 0 ,RightBracket=0,Semicolon=0 + 0 ,Quote=0 + 0 ,V=0,B=940 -(850 + 90) ,N=0 -0 ,M=1390 -(360 + 1030) ,BackSlash=0,Minus=0 + 0 ,Equals=0 -0 };local v257={Delta=Vector2.new(),MouseWheel=0};local v258=82 -22 ;local v259=Vector3.new(1662 -(909 + 752) ,1224 -(109 + 1114) ,1);local v260=Vector3.new(1 -0 ,1 + 0 ,1);local v261=Vector2.new(243 -(6 + 236) ,1 + 0 ) * (v44/64) ;local v262=v261/v258 ;local v263=Vector2.new(1 + 0 ,2 -1 ) * (v44/(13 -5)) ;local v264=1134 -(1076 + 57) ;local v265=v264/v258 ;local v266=0.25 + 0 ;local v267=1;local v268=690 -(579 + 110) ;local v269=0.75;local v270=0.01 + 0 ;local v271=4 + 0 ;local v272=0.25 + 0 ;local v273=407.75 -(174 + 233) ;local v274=0.01 -0 ;local v275=4;local v276=0.75 -0 ;local v277=0.01 + 0 ;local v278=4;local v279={FarIntensity={ADJ=1174.1 -(663 + 511) ,MIN=0 + 0 ,MAX=1},NearIntensity={ADJ=0.1 + 0 ,MIN=0 -0 ,MAX=1 + 0 },FocusDistance={ADJ=20,MIN=0,MAX=200},FocusRadius={ADJ=5,MIN=0,MAX=50}};local v280=1;local v281=2 -1 ;local v282=2 -1 ;v5.Vel=function(v366) local v367=0;local v368;local v369;local v370;while true do local v429=0 + 0 ;while true do if ((1 -0)==v429) then if (v367==(2 + 0)) then return (v368 + v369) * v280 * ((v370 and v272) or (1 + 0)) ;end break;end if (v429==0) then if (v367==0) then if v63 then v280=v46(v280 + (v366 * (((v256.Up-v256.Down) + v255.DPadUp) -v255.DPadDown) * v269) ,v270,v271);else v280=v46(v280 + (v366 * (v256.Up-v256.Down) * v269) ,722.01 -(478 + 244) ,521 -(440 + 77) );end v368=Vector3.new(v254(v255.Thumbstick1.X),v254(v255.ButtonR2) -v254(v255.ButtonL2) ,v254( -v255.Thumbstick1.Y)) * v259 ;v367=1 + 0 ;end if (v367==(3 -2)) then v369=Vector3.new(((v256.D-v256.A) + v256.K) -v256.H ,((v256.E-v256.Q) + v256.I) -v256.Y ,((v256.S-v256.W) + v256.J) -v256.U ) * v260 ;v370=v9:IsKeyDown(Enum.KeyCode.LeftShift) or v9:IsKeyDown(Enum.KeyCode.RightShift) ;v367=1558 -(655 + 901) ;end v429=1;end end end end;v5.Pan=function(v371) local v372=0;local v373;local v374;while true do if (v372==(0 + 0)) then v373=Vector2.new(v254(v255.Thumbstick2.Y),v254( -v255.Thumbstick2.X)) * v263 ;v374=v257.Delta * v261 ;v372=1 + 0 ;end if (v372==(2 + 0)) then return v373 + v374 ;end if (v372==(3 -2)) then if v61 then if (v371>(1445 -(695 + 750))) then v374=(v257.Delta/v371) * v262 ;end end v257.Delta=Vector2.new();v372=6 -4 ;end end end;v5.Fov=function(v375) local v376=0 -0 ;local v377;local v378;while true do if (v376==2) then v257.MouseWheel=0 -0 ;if v63 then return (v377 + v378) * v282 ;else return v377 + v378 ;end break;end if ((352 -(285 + 66))==v376) then v378=v257.MouseWheel * v264 ;if v61 then if (v375>(0 -0)) then v378=(v257.MouseWheel/v375) * v265 ;end end v376=2;end if ((1310 -(682 + 628))==v376) then if v63 then v282=v46(v282 + (v375 * (((v256.Right-v256.Left) + v255.DPadRight) -v255.DPadLeft) * v273) ,v274,v275);end v377=(v255.ButtonX-v255.ButtonY) * v266 ;v376=1 + 0 ;end end end;v5.Roll=function(v379) local v380=299 -(176 + 123) ;local v381;local v382;while true do if (0==v380) then v281=v46(v281 + (v379 * (v256.Period-v256.Comma) * v276) ,v277,v278);v381=(v255.ButtonR1-v255.ButtonL1) * v267 ;v380=1;end if (v380==1) then v382=(v256.C-v256.Z) * v268 ;return (v381 + v382) * v281 ;end end end;v5.SpringControl=function(v383) local v384=0 + 0 ;while true do if (v384==(3 + 1)) then v108:SetFreq(v83);break;end if (v384==(272 -(239 + 30))) then v107:SetFreq(v82);v83=v46(v83 + (v383 * (v256.M-v256.N) * v87) ,v91,v95);v384=2 + 2 ;end if (v384==(2 + 0)) then v106:SetFreq(v81);v82=v46(v82 + (v383 * (v256.B-v256.V) * v86) ,v90,v94);v384=4 -1 ;end if (v384==(2 -1)) then v105:SetFreq(v80);v81=v46(v81 + (v383 * (v256.Quote-v256.Semicolon) * v85) ,v89,v93);v384=317 -(306 + 9) ;end if (v384==0) then if v67 then local v633=0 -0 ;local v634;local v635;while true do if (v633==(0 + 0)) then v634=v9:IsKeyDown(Enum.KeyCode.LeftShift) or v9:IsKeyDown(Enum.KeyCode.RightShift) ;v635=v9:IsKeyDown(Enum.KeyCode.LeftControl) or v9:IsKeyDown(Enum.KeyCode.RightControl) ;v633=1;end if (v633==1) then if (v634 or v635) then return;end break;end end end v80=v46(v80 + (v383 * (v256.RightBracket-v256.LeftBracket) * v84) ,v88,v92);v384=1 + 0 ;end end end;v5.DoF=function(v385) local v386=0;local v387;local v388;while true do if (v386==(0 + 0)) then v387=v9:IsKeyDown(Enum.KeyCode.LeftShift) or v9:IsKeyDown(Enum.KeyCode.RightShift) ;v388=v9:IsKeyDown(Enum.KeyCode.LeftControl) or v9:IsKeyDown(Enum.KeyCode.RightControl) ;v386=1;end if (v386==(2 -1)) then if v387 then local v636=1375 -(1140 + 235) ;while true do if (v636==(0 + 0)) then v58.FarIntensity=v46(v58.FarIntensity + (v385 * (v256.RightBracket-v256.LeftBracket) * v279.FarIntensity.ADJ) ,v279.FarIntensity.MIN,v279.FarIntensity.MAX);v58.InFocusRadius=v46(v58.InFocusRadius + (v385 * (v256.Equals-v256.Minus) * v279.FocusRadius.ADJ) ,v279.FocusRadius.MIN,v279.FocusRadius.MAX);break;end end elseif v388 then v58.NearIntensity=v46(v58.NearIntensity + (v385 * (v256.RightBracket-v256.LeftBracket) * v279.NearIntensity.ADJ) ,v279.NearIntensity.MIN,v279.NearIntensity.MAX);else v58.FocusDistance=v46(v58.FocusDistance + (v385 * (v256.Equals-v256.Minus) * v279.FocusDistance.ADJ) ,v279.FocusDistance.MIN,v279.FocusDistance.MAX);end break;end end end;do local function v389(v430,v431) for v524,v525 in pairs(v430) do if v431[v524.Name] then v431[v524.Name]=0;end end end local function v390(v432) local v433=0 + 0 ;local v434;local v435;local v436;while true do if (v433==(0 + 0)) then v434=os.clock();v435=v96[v432];v433=1;end if (v433==2) then v96[v432]=v434;break;end if (v433==1) then v436=(v435 and (v434-v435)) or  -(53 -(33 + 19)) ;if (v435 and (v436<=v98)) then if ((v434-v97)>=v99) then local v729=0 + 0 ;local v730;while true do if (v729==(0 -0)) then v730=0;while true do if (v730==(1 + 0)) then if v67 then local v822=0 -0 ;local v823;while true do if (v822==0) then v823=0 + 0 ;while true do if (v823==0) then v389(v73,v255);v389(v72,v256);break;end end break;end end else local v824=689 -(586 + 103) ;local v825;while true do if (v824==(0 + 0)) then v825=0 -0 ;while true do if (v825==1) then v256.C=1488 -(1309 + 179) ;v256.Z=0 -0 ;break;end if (v825==(0 + 0)) then v255.ButtonL1=0 -0 ;v255.ButtonR1=0 + 0 ;v825=1 -0 ;end end break;end end end v97=v434;break;end if (v730==(0 -0)) then v103=Vector3.new(v103.x,v103.y,609 -(295 + 314) );v108:Reset(0 -0 );v730=1963 -(1300 + 662) ;end end break;end end end end v433=6 -4 ;end end end local function v391(v437,v438,v439) local v440=0;while true do if (v440==1) then if v67 then if (v74[v439.KeyCode] and (v439.UserInputState==Enum.UserInputState.Begin)) then if  not v58.Enabled then local v764=1755 -(1178 + 577) ;while true do if (v764==0) then v100={};for v807,v808 in ipairs(v15:GetChildren()) do if (v808:IsA("DepthOfFieldEffect") and v808.Enabled) then local v826=0 + 0 ;local v827;while true do if (v826==(0 -0)) then v827=1405 -(851 + 554) ;while true do if (v827==(0 + 0)) then v100[ #v100 + (2 -1) ]=v808;v808.Enabled=false;break;end end break;end end end end v764=1 -0 ;end if (v764==2) then v37.ChildAdded:Connect(function(v809) if (v809:IsA("DepthOfFieldEffect") and v809.Enabled) then local v828=302 -(115 + 187) ;while true do if (v828==0) then v100[ #v100 + 1 ]=v809;v809.Enabled=false;break;end end end end);break;end if (1==v764) then for v810,v811 in ipairs(v37:GetChildren()) do if (v811:IsA("DepthOfFieldEffect") and v811.Enabled) then local v829=0 + 0 ;local v830;while true do if (v829==(0 + 0)) then v830=0 -0 ;while true do if (v830==(1161 -(160 + 1001))) then v100[ #v100 + 1 + 0 ]=v811;v811.Enabled=false;break;end end break;end end end end v15.ChildAdded:Connect(function(v812) if (v812:IsA("DepthOfFieldEffect") and v812.Enabled) then local v831=0 + 0 ;local v832;while true do if (v831==(0 -0)) then v832=358 -(237 + 121) ;while true do if ((897 -(525 + 372))==v832) then v100[ #v100 + 1 ]=v812;v812.Enabled=false;break;end end break;end end end end);v764=3 -1 ;end end else local v765=0;while true do if (0==v765) then for v813,v814 in ipairs(v100) do if v814.Parent then v814.Enabled=true;end end v100={};break;end end end v58.Enabled= not v58.Enabled;v389(v74,v256);end end return Enum.ContextActionResult.Sink;end if (v440==(0 -0)) then v256[v439.KeyCode.Name]=((v438==Enum.UserInputState.Begin) and (143 -(96 + 46))) or 0 ;if v64 then if (v72[v439.KeyCode] and (v439.UserInputState==Enum.UserInputState.Begin)) then v390(v439.KeyCode);end end v440=778 -(643 + 134) ;end end end local function v392(v441,v442,v443) local v444=0;while true do local v526=0 + 0 ;while true do if ((0 -0)==v526) then if (v444==(0 -0)) then v255[v443.KeyCode.Name]=((v442==Enum.UserInputState.Begin) and (1 + 0)) or (0 -0) ;if v64 then if (v73[v443.KeyCode] and (v443.UserInputState==Enum.UserInputState.Begin)) then v390(v443.KeyCode);end end v444=1 -0 ;end if (v444==(720 -(316 + 403))) then return Enum.ContextActionResult.Sink;end break;end end end end local function v393(v445,v446,v447) local v448=0 + 0 ;local v449;while true do if (v448==1) then return Enum.ContextActionResult.Sink;end if (v448==(0 -0)) then v449=v447.Delta;v257.Delta=Vector2.new( -v449.y, -v449.x);v448=1 + 0 ;end end end local function v394(v450,v451,v452) local v453=0 -0 ;while true do if (v453==0) then v255[v452.KeyCode.Name]=v452.Position;return Enum.ContextActionResult.Sink;end end end local function v395(v454,v455,v456) local v457=0 + 0 ;while true do if (v457==0) then local v600=0 + 0 ;while true do if ((0 -0)==v600) then v255[v456.KeyCode.Name]=v456.Position.z;return Enum.ContextActionResult.Sink;end end end end end local function v396(v458,v459,v460) v257[v460.UserInputType.Name]= -v460.Position.z;return Enum.ContextActionResult.Sink;end local function v397(v462) for v527,v528 in pairs(v462) do v462[v527]=v528 * 0 ;end end v5.StartCapture=function() if v63 then local v553=0;while true do if (v553==(4 -3)) then v52:BindActionAtPriority("FreecamGamepadControlSpeed",v392,false,v70,Enum.KeyCode.DPadUp,Enum.KeyCode.DPadDown,Enum.KeyCode.DPadLeft,Enum.KeyCode.DPadRight);break;end if (v553==0) then v52:BindActionAtPriority("FreecamKeyboard",v391,false,v70,Enum.KeyCode.W,Enum.KeyCode.U,Enum.KeyCode.A,Enum.KeyCode.H,Enum.KeyCode.S,Enum.KeyCode.J,Enum.KeyCode.D,Enum.KeyCode.K,Enum.KeyCode.E,Enum.KeyCode.I,Enum.KeyCode.Q,Enum.KeyCode.Y);v52:BindActionAtPriority("FreecamKeyboardControlSpeed",v391,false,v70,Enum.KeyCode.Up,Enum.KeyCode.Down,Enum.KeyCode.Left,Enum.KeyCode.Right);v553=1 -0 ;end end else v52:BindActionAtPriority("FreecamKeyboard",v391,false,v70,Enum.KeyCode.W,Enum.KeyCode.U,Enum.KeyCode.A,Enum.KeyCode.H,Enum.KeyCode.S,Enum.KeyCode.J,Enum.KeyCode.D,Enum.KeyCode.K,Enum.KeyCode.E,Enum.KeyCode.I,Enum.KeyCode.Q,Enum.KeyCode.Y,Enum.KeyCode.Up,Enum.KeyCode.Down);end if v64 then local v554=0 + 0 ;local v555;while true do if (v554==(0 -0)) then v555=0 + 0 ;while true do if ((0 -0)==v555) then v52:BindActionAtPriority("FreecamKeyboardTiltControl",v391,false,v70,Enum.KeyCode.Z,Enum.KeyCode.C);v52:BindActionAtPriority("FreecamGamepadTiltControl",v392,false,v70,Enum.KeyCode.ButtonL1,Enum.KeyCode.ButtonR1);v555=18 -(12 + 5) ;end if (v555==1) then v52:BindActionAtPriority("FreecamKeyboardTiltControlSpeed",v391,false,v70,Enum.KeyCode.Comma,Enum.KeyCode.Period);if v65 then v52:BindActionAtPriority("FreecamKeyboardSmoothnessControl",v391,false,v70,Enum.KeyCode.LeftBracket,Enum.KeyCode.RightBracket,Enum.KeyCode.Semicolon,Enum.KeyCode.Quote,Enum.KeyCode.V,Enum.KeyCode.B,Enum.KeyCode.N,Enum.KeyCode.M);end break;end end break;end end end if v67 then local v556=0 -0 ;while true do if (v556==(0 -0)) then v52:BindActionAtPriority("FreecamKeyboardDoFToggle",v391,false,v70,Enum.KeyCode.BackSlash);v52:BindActionAtPriority("FreecamKeyboardDoFControls",v391,false,v70,Enum.KeyCode.Minus,Enum.KeyCode.Equals);break;end end end v52:BindActionAtPriority("FreecamMousePan",v393,false,v70,Enum.UserInputType.MouseMovement);v52:BindActionAtPriority("FreecamMouseWheel",v396,false,v70,Enum.UserInputType.MouseWheel);v52:BindActionAtPriority("FreecamGamepadButton",v392,false,v70,Enum.KeyCode.ButtonX,Enum.KeyCode.ButtonY);v52:BindActionAtPriority("FreecamGamepadTrigger",v395,false,v70,Enum.KeyCode.ButtonR2,Enum.KeyCode.ButtonL2);v52:BindActionAtPriority("FreecamGamepadThumbstick",v394,false,v70,Enum.KeyCode.Thumbstick1,Enum.KeyCode.Thumbstick2);end;v5.StopCapture=function() local v463=0 -0 ;local v464;while true do if (v463==0) then v464=0 -0 ;while true do if (v464==2) then if v64 then local v746=0 + 0 ;while true do if (v746==1) then v52:UnbindAction("FreecamKeyboardTiltControlSpeed");if v65 then v52:UnbindAction("FreecamKeyboardSmoothnessControl");end break;end if (0==v746) then v52:UnbindAction("FreecamKeyboardTiltControl");v52:UnbindAction("FreecamGamepadTiltControl");v746=1974 -(1656 + 317) ;end end end if v67 then v52:UnbindAction("FreecamKeyboardDoFToggle");v52:UnbindAction("FreecamKeyboardDoFControls");end v52:UnbindAction("FreecamMousePan");v52:UnbindAction("FreecamMouseWheel");v464=3 + 0 ;end if (v464==(1 + 0)) then v397(v256);v397(v257);v52:UnbindAction("FreecamKeyboard");if v63 then local v747=0;while true do if ((0 -0)==v747) then v52:UnbindAction("FreecamKeyboardControlSpeed");v52:UnbindAction("FreecamGamepadControlSpeed");break;end end end v464=9 -7 ;end if (v464==(357 -(5 + 349))) then v52:UnbindAction("FreecamGamepadButton");v52:UnbindAction("FreecamGamepadTrigger");v52:UnbindAction("FreecamGamepadThumbstick");break;end if (v464==0) then v280=4 -3 ;if v63 then v282=1272 -(266 + 1005) ;end if v64 then v281=1 + 0 ;end v397(v255);v464=3 -2 ;end end break;end end end;end end local function v109(v289) if v65 then v5.SpringControl(v289);end if v67 then if (v58 and v58.Parent) then v5.DoF(v289);end end local v290=v105:Update(v289,v5.Vel(v289));local v291=v106:Update(v289,v5.Pan(v289));local v292=v107:Update(v289,v5.Fov(v289));local v293;if v64 then v293=v108:Update(v289,v5.Roll(v289));end local v294=v50(v51(v48((92 -22)/(1698 -(561 + 1135)) ))/v51(v48(v104/(2 -0) )) );v104=v46(v104 + (v292 * v77 * (v289/v294)) ,1,394 -274 );local v295;if v64 then local v465=1066 -(507 + 559) ;local v466;while true do if (v465==(0 -0)) then v466=v291 * v76 * (v289/v294) ;v103=v103 + Vector3.new(v466.X,v466.Y,v293 * v78 * (v289/v294) ) ;v465=1;end if (v465==(3 -2)) then if v65 then v103=Vector3.new(v103.x%((390 -(212 + 176)) * v44) ,v103.y%((907 -(250 + 655)) * v44) ,v103.z%(2 * v44) );else v103=Vector3.new(v46(v103.x, -v79,v79),v103.y%((5 -3) * v44) ,v103.z);end v295=CFrame.new(v102) * CFrame.fromOrientation(v103.x,v103.y,v103.z) * CFrame.new(v290 * v75 * v289 ) ;break;end end else local v467=0 -0 ;local v468;while true do if (v467==(0 -0)) then v468=0;while true do if (0==v468) then v103=v103 + (v291 * v76 * (v289/v294)) ;v103=Vector2.new(v46(v103.x, -v79,v79),v103.y%((1958 -(1869 + 87)) * v44) );v468=1;end if (v468==1) then v295=CFrame.new(v102) * CFrame.fromOrientation(v103.x,v103.y,0) * CFrame.new(v290 * v75 * v289 ) ;break;end end break;end end end v102=v295.p;v15.CFrame=v295;v15.Focus=v295;v15.FieldOfView=v104;end local function v110() local v300=0 -0 ;local v301;local v302;local v303;local v304;local v305;while true do if (v300==2) then v305=v301 and v303 and  not v304 and  not v302 ;return v305;end if (v300==1) then v303=v56.ControlMode==Enum.ControlMode.MouseLockSwitch ;v304=v56.ComputerMovementMode==Enum.ComputerMovementMode.ClickToMove ;v300=1903 -(484 + 1417) ;end if ((0 -0)==v300) then v301=v13.LocalPlayer.DevEnableMouseLock;v302=v13.LocalPlayer.DevComputerMovementMode==Enum.DevComputerMovementMode.Scriptable ;v300=1 -0 ;end end end local v111={};do local v306=773 -(48 + 725) ;local v307;local v308;local v309;local v310;local v311;local v312;local v313;local v314;local v315;while true do if (v306==(2 -0)) then v315={BadgesNotificationsActive=true,PointsNotificationsActive=true};v111.Push=function() local v557=0 -0 ;local v558;while true do if (v557==3) then local v663=0 + 0 ;while true do if (v663==0) then v310=v15.Focus;v308=v9.MouseIconEnabled;v663=2 -1 ;end if (v663==(1 + 0)) then v9.MouseIconEnabled=false;v557=2 + 2 ;break;end end end if (1==v557) then local v664=0;while true do if (v664==(854 -(152 + 701))) then v15.FieldOfView=1381 -(430 + 881) ;v557=1 + 1 ;break;end if (v664==(895 -(557 + 338))) then if v558 then local v779=0 + 0 ;while true do if (0==v779) then for v819,v820 in pairs(v558:GetChildren()) do if (v820:IsA("ScreenGui") and v820.Enabled) then local v838=0 -0 ;local v839;while true do if (v838==0) then v839=0;while true do if (v839==(0 -0)) then v313[ #v313 + 1 ]=v820;v820.Enabled=false;break;end end break;end end end end if v62 then v558.ChildAdded:Connect(function(v840) if (v840:IsA("ScreenGui") and v840.Enabled) then local v844=0;while true do if (v844==0) then v313[ #v313 + (2 -1) ]=v840;v840.Enabled=false;break;end end end end);end break;end end end v312=v15.FieldOfView;v664=2 -1 ;end end end if ((803 -(499 + 302))==v557) then v309=v15.CameraType;v15.CameraType=Enum.CameraType.Custom;v311=v15.CFrame;v557=869 -(39 + 827) ;end if (v557==(0 -0)) then for v702 in pairs(v314) do local v703=0 -0 ;while true do if (v703==0) then v314[v702]=v53:GetCoreGuiEnabled(Enum.CoreGuiType[v702]);v53:SetCoreGuiEnabled(Enum.CoreGuiType[v702],false);break;end end end for v704 in pairs(v315) do local v705=0 -0 ;while true do if (v705==(0 -0)) then v315[v704]=v53:GetCore(v704);v53:SetCore(v704,false);break;end end end v558=v57:FindFirstChildOfClass("PlayerGui");v557=1 + 0 ;end if (v557==(11 -7)) then if (v59 and v110()) then v307=Enum.MouseBehavior.Default;else v307=v9.MouseBehavior;end v9.MouseBehavior=Enum.MouseBehavior.Default;break;end end end;v111.Pop=function() local v559=0 + 0 ;while true do if (v559==(2 -0)) then v15.CFrame=v311;v311=nil;v15.Focus=v310;v310=nil;v559=107 -(103 + 1) ;end if (v559==(554 -(475 + 79))) then for v706,v707 in pairs(v314) do v53:SetCoreGuiEnabled(Enum.CoreGuiType[v706],v707);end for v708,v709 in pairs(v315) do v53:SetCore(v708,v709);end for v710,v711 in pairs(v313) do if v711.Parent then v711.Enabled=true;end end if v62 then v313={};end v559=2 -1 ;end if (v559==(3 -2)) then v15.FieldOfView=v312;v312=nil;v15.CameraType=v309;v309=nil;v559=1 + 1 ;end if (v559==(3 + 0)) then v9.MouseIconEnabled=v308;v308=nil;v9.MouseBehavior=v307;v307=nil;break;end end end;break;end if ((1503 -(1395 + 108))==v306) then v307=nil;v308=nil;v309=nil;v310=nil;v306=1;end if (v306==(2 -1)) then v311=nil;v312=nil;v313={};v314={Backpack=true,Chat=true,Health=true,PlayerList=true};v306=1206 -(7 + 1197) ;end end end local function v112() local v316=0 + 0 ;local v317;while true do if (v316==(0 + 0)) then local v533=319 -(27 + 292) ;while true do if (v533==1) then if v64 then v103=Vector3.new(v317:toEulerAnglesYXZ());else v103=Vector2.new(v317:toEulerAnglesYXZ());end v316=1;break;end if (0==v533) then if  not v66 then if v60 then script:SetAttribute(v68,true);end end v317=v15.CFrame;v533=2 -1 ;end end end if (v316==(4 -0)) then v14:BindToRenderStep("Freecam",Enum.RenderPriority.Camera.Value,v109);v5.StartCapture();break;end if (v316==(4 -3)) then v102=v317.p;v104=v15.FieldOfView;v105:Reset(Vector3.new());v316=3 -1 ;end if (v316==(3 -1)) then local v536=139 -(43 + 96) ;while true do if (v536==0) then v106:Reset(Vector2.new());v107:Reset(0);v536=4 -3 ;end if (v536==1) then if v64 then v108:Reset(0 -0 );end v316=3 + 0 ;break;end end end if (v316==(1 + 2)) then local v537=0 -0 ;while true do if ((1 + 0)==v537) then if v67 then if ( not v58 or  not v58.Parent) then v58=Instance.new("DepthOfFieldEffect");v58.Enabled=false;v58.Name="FreecamDepthOfField";v58.Parent=v15;end end v316=4;break;end if (v537==(0 -0)) then if v65 then local v712=0 + 0 ;while true do if (v712==1) then v82=4;v83=1 + 0 ;break;end if (v712==(1751 -(1414 + 337))) then v80=1941.5 -(1642 + 298) ;v81=2 -1 ;v712=2 -1 ;end end end v111.Push();v537=2 -1 ;end end end end end local function v113() local v318=0 + 0 ;local v319;while true do if (v318==(0 + 0)) then v319=972 -(357 + 615) ;while true do if (v319==(1 + 0)) then v5.StopCapture();v14:UnbindFromRenderStep("Freecam");v319=4 -2 ;end if (v319==(0 + 0)) then if  not v66 then if v60 then script:SetAttribute(v68,false);end end if v67 then if (v58 and v58.Parent) then local v757=0;while true do if (0==v757) then if v58.Enabled then local v815=0 -0 ;local v816;while true do if (v815==0) then v816=0;while true do if (v816==(0 + 0)) then for v846,v847 in ipairs(v100) do if v847.Parent then v847.Enabled=true;end end v100={};break;end end break;end end end v58.Enabled=false;break;end end end end v319=1;end if (v319==2) then v111.Pop();break;end end break;end end end do local v320=0 + 0 ;local v321;local v322;local v323;local v324;while true do if (v320==(1 + 0)) then function v322() local v560=1301 -(384 + 917) ;while true do if (v560==(697 -(128 + 569))) then if v321 then v113();else v112();end v321= not v321;v560=1;end if (v560==(1544 -(1407 + 136))) then if v66 then script:SetAttribute(v68,v321);end break;end end end v323=nil;v320=1889 -(687 + 1200) ;end if (v320==(1712 -(556 + 1154))) then function v323(v561) local v562=0;local v563;while true do if (v562==(0 -0)) then v563=95 -(9 + 86) ;while true do if (v563==0) then for v768=1, #v561-(422 -(275 + 146))  do if  not v9:IsKeyDown(v561[v768]) then return;end end v322();break;end end break;end end end v324=nil;v320=3;end if ((0 + 0)==v320) then local v538=64 -(29 + 35) ;while true do if (v538==0) then v321=false;v322=nil;v538=4 -3 ;end if ((2 -1)==v538) then v320=1;break;end end end if (v320==4) then if (v66 or v60) then script:SetAttribute(v68,v321);script:GetAttributeChangedSignal(v68):Connect(function() local v638=script:GetAttribute(v68);if (typeof(v638)~="boolean") then local v713=0 -0 ;local v714;while true do if (v713==(0 + 0)) then v714=1012 -(53 + 959) ;while true do if (v714==0) then local v803=408 -(312 + 96) ;while true do if (v803==(0 -0)) then script:SetAttribute(v68,v321);return;end end end end break;end end end if (v638~=v321) then if v638 then local v758=285 -(147 + 138) ;while true do if (v758==0) then v112();v321=true;break;end end else local v759=899 -(813 + 86) ;while true do if (v759==(0 + 0)) then v113();v321=false;break;end end end end end);end break;end if (v320==3) then function v324(v564,v565,v566) local v567=0 -0 ;while true do if (v567==(492 -(18 + 474))) then local v676=0 + 0 ;while true do if (v676==(0 -0)) then if (v565==Enum.UserInputState.Begin) then if (v566.KeyCode==v71[ #v71]) then v323(v71);end end return Enum.ContextActionResult.Pass;end end end end end v52:BindActionAtPriority("FreecamToggle",v324,false,v69,v71[ #v71]);v320=1090 -(860 + 226) ;end end end local v31=v2:CreateButton({Name="Panic",Callback=function() v0:Destroy();end});
--- ⚠️ WARNING: integrity protected!
---[[
- .____                  ________ ___.    _____                           __                
- |    |    __ _______   \_____  \\_ |___/ ____\_ __  ______ ____ _____ _/  |_  ___________ 
- |    |   |  |  \__  \   /   |   \| __ \   __\  |  \/  ___// ___\\__  \\   __\/  _ \_  __ \
- |    |___|  |  // __ \_/    |    \ \_\ \  | |  |  /\___ \\  \___ / __ \|  | (  <_> )  | \/
- |_______ \____/(____  /\_______  /___  /__| |____//____  >\___  >____  /__|  \____/|__|   
-         \/          \/         \/    \/                \/     \/     \/                   
-          \_Welcome to LuaObfuscator.com   (Alpha 0.10.9) ~  Much Love, Ferib 
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+local Window = Rayfield:CreateWindow({
+   Name = "Gamesense.vip",
+   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   LoadingTitle = "Vip Cheat",
+   LoadingSubtitle = "by Immortal",
+   ShowText = "Rayfield", -- for mobile users to unhide rayfield, change if you'd like
+   Theme = "Ocean", -- Check https://docs.sirius.menu/rayfield/configuration/themes
 
-]]--
+   ToggleUIKeybind = "F", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
+
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = gamesense, -- Create a custom folder for your hub/game
+      FileName = "gamesensevip"
+   },
+
+   Discord = {
+      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
+      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+
+   KeySystem = true, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Vip Secure",
+      Subtitle = "gamesense",
+      Note = "Key In https://t.me/Xsoqqviperr", -- Use this to tell the user how to get a key
+      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"gamesense"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
+
+local Tab = Window:CreateTab("Main", "square-mouse-pointer") -- Title, Image
+local Section = Tab:CreateSection("Aimlock")
+
+local Toggle = Tab:CreateToggle({
+   Name = "AimLock",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(state)
+    if state then
+        -- Enable Script
+_G.AimBotEnabled = true
+
+local camera = workspace.CurrentCamera
+local players = game:GetService("Players")
+local user = players.LocalPlayer
+local inputService = game:GetService("UserInputService")
+local runService = game:GetService("RunService")
+
+local predictionFactor, aimSpeed = 0.042, 10
+local holding = false
+
+if not user then return warn("LocalPlayer не найден!") end
+
+-- Создаем FOV круг
+if not _G.FOVCircle then
+    _G.FOVCircle = Drawing.new("Circle")
+    _G.FOVCircle.Radius, _G.FOVCircle.Filled, _G.FOVCircle.Thickness = 200, false, 1 -- Начальный радиус: 200
+    _G.FOVCircle.Color, _G.FOVCircle.Transparency, _G.FOVCircle.Visible = Color3.new(1, 1, 1), 0.7, true
+end
+
+-- Получение ближайшего игрока
+local function getClosestPlayer()
+    local closest, minDist = nil, math.huge
+    local currentRadius = _G.FOVCircle and _G.FOVCircle.Radius or 200 -- Используем текущий радиус FOV
+    for _, player in pairs(players:GetPlayers()) do
+        if player ~= user and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+            local head = player.Character:FindFirstChild("Head")
+            local screenPos, onScreen = camera:WorldToScreenPoint(head.Position)
+            local distance = (Vector2.new(screenPos.X, screenPos.Y) - inputService:GetMouseLocation()).Magnitude
+            if onScreen and distance <= currentRadius and distance < minDist then
+                closest, minDist = player, distance
+            end
+        end
+    end
+    return closest
+end
+
+-- Предсказание позиции
+local function predictHead(target)
+    local head = target.Character.Head
+    local velocity = target.Character.HumanoidRootPart.AssemblyLinearVelocity or Vector3.zero
+    return head.Position + velocity * predictionFactor
+end
+
+-- Обработчики ввода
+inputService.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton2 then holding = true end
+end)
+
+inputService.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton2 then holding = false end
+end)
+
+-- Основной цикл
+runService.RenderStepped:Connect(function()
+    if not _G.AimBotEnabled then return end
+    if _G.FOVCircle then
+        _G.FOVCircle.Position = inputService:GetMouseLocation()
+    end
+    if holding then
+        local target = getClosestPlayer()
+        if target then
+            local predicted = predictHead(target)
+            camera.CFrame = camera.CFrame:Lerp(CFrame.new(camera.CFrame.Position, predicted), aimSpeed * 0.1)
+        end
+    end
+end)
+    else
+        -- Disable Script
+_G.AimBotEnabled = false -- Отключаем функционал аимбота
+
+-- Удаляем FOV круг, если он существует
+if _G.FOVCircle then
+    _G.FOVCircle:Remove() -- Удаляем объект
+    _G.FOVCircle = nil    -- Очищаем переменную
+end
+
+-- Очищаем глобальные переменные, если требуется
+_G.PredictionFactor = nil
+_G.AimSpeed = nil
+    end
+   end,
+})
+
+local Input = Tab:CreateInput({
+   Name = "AimLock Fov",
+   PlaceholderText = "FOV Radius set to:",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(txt)
+-- Настройка FOV через текстбокс
+    local newRadius = tonumber(txt) -- Преобразуем введенный текст в число
+    if newRadius and _G.FOVCircle then
+        _G.FOVCircle.Radius = math.clamp(newRadius, 10, 500) -- Ограничиваем значение от 10 до 500
+        print("FOV Radius set to:", _G.FOVCircle.Radius)
+    else
+        warn("Invalid input! Please enter a number.")
+    end
+   end,
+})
+
+local Section = Tab:CreateSection("AntiAim")
+
+local spinSpeed = 10
+local spinEnabled = false
+local spinConnection = nil
+local UserInputService = game:GetService("UserInputService")
+
+-- Улучшенная функция для получения персонажа
+local function getCharacterParts()
+    local character = game.Players.LocalPlayer.Character
+    if not character then return nil, nil, nil end
+    
+    local humanoid = character:FindFirstChildWhichIsA("Humanoid")
+    local rootPart = character:FindFirstChild("HumanoidRootPart")
+    
+    if not humanoid then
+        humanoid = character:WaitForChild("Humanoid", 2)
+    end
+    if not rootPart then
+        rootPart = character:WaitForChild("HumanoidRootPart", 2)
+    end
+    
+    return character, humanoid, rootPart
+end
+
+local function updateSpin()
+    local character, humanoid, rootPart = getCharacterParts()
+    if not humanoid or not rootPart then return end
+    
+    -- Отключаем спин если нажата клавиша E
+    if spinConnection and UserInputService:IsKeyDown(Enum.KeyCode.E) then
+        spinConnection:Disconnect()
+        spinConnection = nil
+        humanoid.AutoRotate = true
+        return
+    end
+    
+    -- Включаем спин если нужно и не нажата E
+    if spinEnabled and not spinConnection and not UserInputService:IsKeyDown(Enum.KeyCode.E) then
+        humanoid.AutoRotate = false
+        spinConnection = game:GetService("RunService").Heartbeat:Connect(function(delta)
+            if not rootPart or not rootPart:IsDescendantOf(workspace) then
+                if spinConnection then
+                    spinConnection:Disconnect()
+                    spinConnection = nil
+                end
+                return
+            end
+            rootPart.CFrame = rootPart.CFrame * CFrame.Angles(0, math.rad(spinSpeed * delta * 60), 0)
+        end)
+    end
+end
+
+-- Обработчик клавиш
+UserInputService.InputBegan:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.E then
+        local _, humanoid = getCharacterParts()
+        if humanoid then
+            humanoid.AutoRotate = true
+        end
+        if spinConnection then
+            spinConnection:Disconnect()
+            spinConnection = nil
+        end
+    end
+end)
+
+UserInputService.InputEnded:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.E and spinEnabled then
+        updateSpin()
+    end
+end)
+
+-- Toggle
+local Toggle = Tab:CreateToggle({
+    Name = "Spin-Bot",
+    CurrentValue = false,
+    Flag = "SpinToggle",
+    Callback = function(Enabled)
+        spinEnabled = Enabled
+        if not Enabled then
+            if spinConnection then
+                spinConnection:Disconnect()
+                spinConnection = nil
+            end
+            local _, humanoid = getCharacterParts()
+            if humanoid then
+                humanoid.AutoRotate = true
+            end
+        else
+            updateSpin()
+        end
+    end
+})
+
+-- Slider
+local Slider = Tab:CreateSlider({
+    Name = "Spin-Bot Speed",
+    Range = {1, 360},
+    Increment = 1,
+    Suffix = "° per second",
+    CurrentValue = spinSpeed,
+    Flag = "SpinSpeed",
+    Callback = function(Value)
+        spinSpeed = Value
+        if spinEnabled then
+            updateSpin()
+        end
+    end
+})
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local rotating = false
+local rotationInterval = 0.1
+local rotationThread = nil
+local autoRotateBlockThread = nil
+
+-- Функция для поворота персонажа
+local function rotateCharacter()
+    while rotating and task.wait(rotationInterval) do
+        if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+            local randomAngle = math.random(0, 360)
+            player.Character.HumanoidRootPart.CFrame = 
+                player.Character.HumanoidRootPart.CFrame * CFrame.Angles(0, math.rad(randomAngle), 0)
+        end
+    end
+end
+
+-- Постоянно блокирует AutoRotate, пока включен Toggle
+local function blockAutoRotate()
+    while rotating do
+        if player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
+            player.Character.Humanoid.AutoRotate = false
+        end
+        task.wait(0.1) -- Проверяем каждые 0.1 сек
+    end
+end
+
+-- Создаем Toggle
+local Toggle = Tab:CreateToggle({
+    Name = "Random Rotation",
+    CurrentValue = false,
+    Flag = "RandomRotationToggle",
+    Callback = function(Value)
+        rotating = Value
+        if Value then
+            -- Запускаем вращение и блокировку AutoRotate
+            rotationThread = task.spawn(rotateCharacter)
+            autoRotateBlockThread = task.spawn(blockAutoRotate)
+        else
+            -- Возвращаем AutoRotate и останавливаем потоки
+            if player.Character and player.Character:FindFirstChildOfClass("Humanoid") then
+                player.Character.Humanoid.AutoRotate = true
+            end
+            if rotationThread then task.cancel(rotationThread) end
+            if autoRotateBlockThread then task.cancel(autoRotateBlockThread) end
+            rotationThread = nil
+            autoRotateBlockThread = nil
+        end
+    end,
+})
+
+-- Создаем Slider для управления интервалом
+local Slider = Tab:CreateSlider({
+    Name = "Rotation Speed",
+    Range = {0.05, 2},
+    Increment = 0.05,
+    Suffix = "seconds",
+    CurrentValue = 0.1,
+    Flag = "RotationInterval",
+    Callback = function(Value)
+        rotationInterval = Value
+    end,
+})
+
+local Section = Tab:CreateSection("MainTabs")
+
+local Slider = Tab:CreateSlider({
+   Name = "WalkSpeed",
+   Range = {16, 300},
+   Increment = 1,
+   Suffix = "Speed",
+   CurrentValue = 16,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(s)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+   end,
+})
+
+local Slider = Tab:CreateSlider({
+   Name = "JumpPower",
+   Range = {50, 500},
+   Increment = 1,
+   Suffix = "Power",
+   CurrentValue = 50,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(s)
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+   end,
+})
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local humanoid
+
+-- функция для обновления humanoid при респавне
+local function setupCharacter(char)
+    humanoid = char:WaitForChild("Humanoid")
+end
+
+-- первый персонаж
+setupCharacter(player.Character or player.CharacterAdded:Wait())
+-- обработка новых респавнов
+player.CharacterAdded:Connect(setupCharacter)
+
+-- Toggle для прыжка
+local JumpToggle = Tab:CreateToggle({
+    Name = "Enable Jump",
+    CurrentValue = true, -- по умолчанию прыжки включены
+    Flag = "JumpToggle",
+    Callback = function(Value)
+        if humanoid then
+            humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping, Value)
+        end
+    end,
+})
+
+
+local Slider = Tab:CreateSlider({
+   Name = "HipHeight",
+   Range = {0, 75},
+   Increment = 0.1,
+   Suffix = "HipHeight",
+   CurrentValue = 0,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(s)
+game.Players.LocalPlayer.Character.Humanoid.HipHeight = s
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "AntiFling",
+   Callback = function()
+
+local Services = setmetatable({}, {__index = function(Self, Index)
+    local NewService = game.GetService(game, Index)
+    if NewService then
+        Self[Index] = NewService
+    end
+    return NewService
+end})
+
+-- [ LocalPlayer ] --
+local LocalPlayer = Services.Players.LocalPlayer
+
+-- // Functions \\ --
+local function PlayerAdded(Player)
+    local Detected = false
+    local Character;
+    local PrimaryPart;
+
+    local function CharacterAdded(NewCharacter)
+        Character = NewCharacter
+        repeat
+            wait()
+            PrimaryPart = NewCharacter:FindFirstChild("HumanoidRootPart")
+        until PrimaryPart
+        Detected = false
+    end
+
+    CharacterAdded(Player.Character or Player.CharacterAdded:Wait())
+    Player.CharacterAdded:Connect(CharacterAdded)
+    Services.RunService.Heartbeat:Connect(function()
+        if (Character and Character:IsDescendantOf(workspace)) and (PrimaryPart and PrimaryPart:IsDescendantOf(Character)) then
+            if PrimaryPart.AssemblyAngularVelocity.Magnitude > 50 or PrimaryPart.AssemblyLinearVelocity.Magnitude > 100 then
+                if Detected == false then
+                    -- game.StarterGui:SetCore("ChatMakeSystemMessage", { -- Removed chat message
+                    --     Text = "Fling Exploit detected, Player: " .. tostring(Player);
+                    --     Color = Color3.fromRGB(255, 200, 0);
+                    -- })
+                end
+                Detected = true
+                for i,v in ipairs(Character:GetDescendants()) do
+                    if v:IsA("BasePart") then
+                        v.CanCollide = false
+                        v.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
+                        v.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+                        v.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0)
+                    end
+                end
+                PrimaryPart.CanCollide = false
+                PrimaryPart.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
+                PrimaryPart.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+                PrimaryPart.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0)
+            end
+        end
+    end)
+end
+
+-- // Event Listeners \\ --
+for i,v in ipairs(Services.Players:GetPlayers()) do
+    if v ~= LocalPlayer then
+        PlayerAdded(v)
+    end
+end
+Services.Players.PlayerAdded:Connect(PlayerAdded)
+
+local LastPosition = nil
+Services.RunService.Heartbeat:Connect(function()
+    pcall(function()
+        local PrimaryPart = LocalPlayer.Character.PrimaryPart
+        if PrimaryPart.AssemblyLinearVelocity.Magnitude > 250 or PrimaryPart.AssemblyAngularVelocity.Magnitude > 250 then
+            PrimaryPart.AssemblyAngularVelocity = Vector3.new(0, 0, 0)
+            PrimaryPart.AssemblyLinearVelocity = Vector3.new(0, 0, 0)
+            PrimaryPart.CFrame = LastPosition
+
+            -- game.StarterGui:SetCore("ChatMakeSystemMessage", { -- Removed self-fling message
+            --     Text = "You were flung. Neutralizing velocity. :3";
+            --     Color = Color3.fromRGB(255, 0, 0);
+            -- })
+        elseif PrimaryPart.AssemblyLinearVelocity.Magnitude < 50 or PrimaryPart.AssemblyAngularVelocity.Magnitude > 50 then
+            LastPosition = PrimaryPart.CFrame
+        end
+    end)
+end)
+
+   end,
+})  
+
+local Slider = Tab:CreateSlider({
+   Name = "Gravity",
+   Range = {0, 300},
+   Increment = 1,
+   Suffix = "Gravity",
+   CurrentValue = 196.2,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(s)
+workspace.Gravity = s
+   end,
+})
+
+local Section = Tab:CreateSection("Movement")
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+local humanoid
+
+-- Настройки "фейк лага"
+local lagChance = 0.6 -- шанс того, что анимация залагает
+local freezeTime = 0.2 -- сколько секунд будет "застревать"
+local skipTime = 0.1 -- пауза перед резким продолжением
+
+-- переменная для включения/выключения
+local fakeLagEnabled = false
+
+-- функция для обновления humanoid при респавне
+local function setupCharacter(char)
+    humanoid = char:WaitForChild("Humanoid")
+end
+
+-- первый персонаж
+setupCharacter(player.Character or player.CharacterAdded:Wait())
+-- обработка новых респавнов
+player.CharacterAdded:Connect(setupCharacter)
+
+-- сам Toggle
+local Toggle = Tab:CreateToggle({
+   Name = "Fake Lag",
+   CurrentValue = false,
+   Flag = "FakeLagToggle",
+   Callback = function(Value)
+       fakeLagEnabled = Value -- включаем или выключаем лаги
+   end,
+})
+
+-- основной цикл
+RunService.RenderStepped:Connect(function()
+    if fakeLagEnabled and humanoid and math.random() < lagChance then
+        local animator = humanoid:FindFirstChildOfClass("Animator")
+        if animator then
+            for _, track in pairs(animator:GetPlayingAnimationTracks()) do
+                track:AdjustSpeed(0) -- стопаем
+            end
+            task.wait(freezeTime)
+            for _, track in pairs(animator:GetPlayingAnimationTracks()) do
+                track:AdjustSpeed(3) -- ускоренный рывок вперёд
+            end
+            task.wait(skipTime)
+            for _, track in pairs(animator:GetPlayingAnimationTracks()) do
+                track:AdjustSpeed(1) -- возвращаем нормальную скорость
+            end
+        end
+    end
+end)
+
+
+
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+
+-- Настройки
+local WALK_SPEED = 16
+local BHOP_SPEED = 35
+local JUMP_COOLDOWN = 0.3
+local ROTATION_SPEED = 0.3
+
+-- Глобальное состояние
+local keys = {
+    W = false,
+    A = false,
+    S = false,
+    D = false,
+    Space = false
+}
+local lastJumpTime = 0
+local isBunnyHopEnabled = false
+local wasInAir = false
+local bhopMode = "Forward" -- режим из Dropdown ("Forward" или "SpinBhop")
+
+-- Переменные персонажа
+local humanoid, rootPart
+local currentCharacter
+
+-- Функция для инициализации персонажа
+local function initializeCharacter(newCharacter)
+    currentCharacter = newCharacter
+    humanoid = newCharacter:WaitForChild("Humanoid")
+    rootPart = newCharacter:WaitForChild("HumanoidRootPart")
+
+    humanoid.Died:Connect(function()
+        wasInAir = false
+    end)
+end
+
+-- Инициализация первого персонажа
+local player = Players.LocalPlayer
+initializeCharacter(player.Character or player.CharacterAdded:Wait())
+player.CharacterAdded:Connect(initializeCharacter)
+
+-- Обработка ввода
+UserInputService.InputBegan:Connect(function(input, gpe)
+    if gpe then return end
+    if input.KeyCode == Enum.KeyCode.W then keys.W = true end
+    if input.KeyCode == Enum.KeyCode.A then keys.A = true end
+    if input.KeyCode == Enum.KeyCode.S then keys.S = true end
+    if input.KeyCode == Enum.KeyCode.D then keys.D = true end
+    if input.KeyCode == Enum.KeyCode.Space then keys.Space = true end
+end)
+
+UserInputService.InputEnded:Connect(function(input)
+    if input.KeyCode == Enum.KeyCode.W then keys.W = false end
+    if input.KeyCode == Enum.KeyCode.A then keys.A = false end
+    if input.KeyCode == Enum.KeyCode.S then keys.S = false end
+    if input.KeyCode == Enum.KeyCode.D then keys.D = false end
+    if input.KeyCode == Enum.KeyCode.Space then keys.Space = false end
+end)
+
+-- Получение векторов камеры
+local function getCameraVectors()
+    local camera = workspace.CurrentCamera
+    if not camera then return Vector3.new(), Vector3.new() end
+    
+    local forward = (camera.CFrame.LookVector * Vector3.new(1, 0, 1)).Unit
+    local right = (camera.CFrame.RightVector * Vector3.new(1, 0, 1)).Unit
+    return forward, right
+end
+
+-- Плавный поворот к камере (работает только если bhop выключен)
+local function smoothRotateToCamera()
+    if not rootPart or isBunnyHopEnabled then return end 
+    local camera = workspace.CurrentCamera
+    if not camera then return end
+    
+    local lookVector = camera.CFrame.LookVector * Vector3.new(1, 0, 1)
+    local targetCFrame = CFrame.new(rootPart.Position, rootPart.Position + lookVector)
+    rootPart.CFrame = rootPart.CFrame:Lerp(targetCFrame, ROTATION_SPEED)
+end
+
+-- Основной цикл
+RunService.Heartbeat:Connect(function(dt)
+    if not humanoid or not rootPart or humanoid.Health <= 0 then return end
+
+    local currentState = humanoid:GetState()
+    local isInAir = currentState == Enum.HumanoidStateType.Jumping or currentState == Enum.HumanoidStateType.Freefall
+    local isGrounded = not isInAir
+
+    -- управляем AutoRotate
+    if isBunnyHopEnabled then
+        if isInAir then
+            humanoid.AutoRotate = false
+        else
+            humanoid.AutoRotate = true
+        end
+    else
+        humanoid.AutoRotate = true
+    end
+
+    if isGrounded and wasInAir and keys.Space then
+        smoothRotateToCamera()
+    end
+    wasInAir = isInAir
+
+    if isBunnyHopEnabled then
+        local forward, right = getCameraVectors()
+        local moveDirection = Vector3.new()
+
+        if keys.W then moveDirection = moveDirection + forward end
+        if keys.S then moveDirection = moveDirection - forward end
+        if keys.D then moveDirection = moveDirection + right end
+        if keys.A then moveDirection = moveDirection - right end
+
+        if moveDirection.Magnitude == 0 and keys.Space then
+            moveDirection = forward
+        end
+
+        if isInAir and moveDirection.Magnitude > 0 then
+            moveDirection = moveDirection.Unit * BHOP_SPEED * dt
+
+            if bhopMode == "SpinBhop" then
+                rootPart.CFrame = rootPart.CFrame * CFrame.Angles(0, math.rad(10), 0)
+                rootPart.CFrame = rootPart.CFrame + moveDirection
+            elseif bhopMode == "Forward" then
+                rootPart.CFrame = CFrame.lookAt(rootPart.Position + moveDirection, rootPart.Position + moveDirection + forward)
+            end
+        end
+
+        if keys.Space and isGrounded then
+            local now = tick()
+            if now - lastJumpTime > JUMP_COOLDOWN then
+                humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+                lastJumpTime = now
+            end
+        end
+    end
+end)
+
+-- Toggle для управления
+local Toggle = Tab:CreateToggle({
+    Name = "Bunny Hop",
+    CurrentValue = false,
+    Flag = "BunnyHopToggle",
+    Callback = function(Value)
+        isBunnyHopEnabled = Value
+        if humanoid then
+            humanoid.WalkSpeed = WALK_SPEED
+        end
+        if not Value then
+            for key in pairs(keys) do keys[key] = false end
+        end
+    end,
+})
+
+-- Dropdown для выбора режима
+local Dropdown = Tab:CreateDropdown({
+    Name = "Bhop Mode",
+    Options = {"SpinBhop", "Forward"},
+    CurrentOption = {"Forward"},
+    MultipleOptions = false,
+    Flag = "BhopDropdown",
+    Callback = function(Option)
+        bhopMode = Option[1]
+    end,
+})
+
+local Tab = Window:CreateTab("Visual", "eye")
+local Section = Tab:CreateSection("WallHack")
+
+local Toggle = Tab:CreateToggle({
+   Name = "Chams",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(state)
+    if state then
+        local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ThirdScripts/ChamsTeamColor/refs/heads/main/ChamsColorTeam.lua"))()
+    else
+        _G.ESP_Enabled = false
+
+for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
+    if player.Character then
+        for _, v in ipairs(player.Character:GetChildren()) do
+            if v:IsA("Highlight") then
+                v:Destroy()
+            end
+        end
+    end
+end
+    end   -- The variable (Value) is a boolean on whether the toggle is true or false
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Skelet Esp",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ThirdScripts/ESPSkeletMod/refs/heads/main/ESPSkelet.lua"))()
+   end,
+})  
+
+local Button = Tab:CreateButton({
+   Name = "Esp",
+   Callback = function()
+    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ThirdScripts/ESPteamcolor/refs/heads/main/ESP.lua"))()
+   end,
+})  
+
+local Section = Tab:CreateSection("Camera")
+
+local Slider = Tab:CreateSlider({
+   Name = "Zoom",
+   Range = {5, 2000},
+   Increment = 5,
+   Suffix = "CameraMaxZoomDistance",
+   CurrentValue = 124,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(s)
+    game.Players.LocalPlayer.CameraMaxZoomDistance = s
+end,
+})
+
+-- Улучшенная Debug Camera для Roblox с поддержкой keybind из библиотеки
+local Player = game:GetService("Players").LocalPlayer
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+
+local camera = workspace.CurrentCamera
+local debugEnabled = false
+local cameraSpeed = 50  -- Увеличенная базовая скорость
+local fastSpeedMultiplier = 3
+local slowSpeedMultiplier = 0.3
+local mouseSensitivity = 0.5  -- Чувствительность мыши
+
+-- Сохраняем оригинальные настройки камеры
+local originalCameraType
+local originalCameraSubject
+local originalFieldOfView = 70
+
+-- Настройки управления (можно изменить)
+local moveKeys = {
+    forward = Enum.KeyCode.W,
+    backward = Enum.KeyCode.S,
+    left = Enum.KeyCode.A,
+    right = Enum.KeyCode.D,
+    up = Enum.KeyCode.Space,
+    down = Enum.KeyCode.LeftControl
+}
+
+-- Переменные для вращения камеры
+local yaw = 0
+local pitch = 0
+
+-- Функция для включения debug камеры
+local function enableDebugCamera()
+    if debugEnabled then return end
+    debugEnabled = true
+    
+    -- Сохраняем текущие настройки камеры
+    originalCameraType = camera.CameraType
+    originalCameraSubject = camera.CameraSubject
+    originalFieldOfView = camera.FieldOfView
+    
+    -- Устанавливаем камеру в ручной режим
+    camera.CameraType = Enum.CameraType.Scriptable
+    camera.CameraSubject = nil
+    
+    -- Инициализируем углы вращения
+    local look = camera.CFrame.LookVector
+    yaw = math.atan2(look.X, look.Z)
+    pitch = math.asin(look.Y)
+    
+    -- Останавливаем персонажа, если он существует
+    if Player.Character and Player.Character:FindFirstChild("Humanoid") then
+        Player.Character.Humanoid.WalkSpeed = 0
+        Player.Character.Humanoid.JumpPower = 0
+    end
+    
+    -- Скрываем интерфейс для лучшего обзора
+    if Player:FindFirstChild("PlayerGui") then
+        Player.PlayerGui:SetTopbarTransparency(1)
+    end
+    
+    -- Захватываем мышь для плавного вращения
+    UserInputService.MouseBehavior = Enum.MouseBehavior.LockCenter
+end
+
+-- Функция для выключения debug камеры
+local function disableDebugCamera()
+    if not debugEnabled then return end
+    debugEnabled = false
+    
+    -- Восстанавливаем оригинальные настройки камеры
+    camera.CameraType = originalCameraType or Enum.CameraType.Custom
+    camera.CameraSubject = originalCameraSubject or Player.Character and Player.Character:FindFirstChild("Humanoid")
+    camera.FieldOfView = originalFieldOfView or 70
+    
+    -- Восстанавливаем скорость персонажа, если он существует
+    if Player.Character and Player.Character:FindFirstChild("Humanoid") then
+        Player.Character.Humanoid.WalkSpeed = 16
+        Player.Character.Humanoid.JumpPower = 50
+    end
+    
+    -- Восстанавливаем интерфейс
+    if Player:FindFirstChild("PlayerGui") then
+        Player.PlayerGui:SetTopbarTransparency(0)
+    end
+    
+    -- Возвращаем нормальное поведение мыши
+    UserInputService.MouseBehavior = Enum.MouseBehavior.Default
+end
+
+-- Функция для переключения debug камеры
+local function toggleDebugCamera()
+    if debugEnabled then
+        disableDebugCamera()
+    else
+        enableDebugCamera()
+    end
+end
+
+-- Создаем keybind через библиотеку
+local Keybind = Tab:CreateKeybind({
+   Name = "Debug camera",
+   CurrentKeybind = "P",
+   HoldToInteract = false,
+   Flag = "Keybind1",
+   Callback = function(knopka)
+       toggleDebugCamera()
+   end,
+})
+
+-- Основной цикл движения камеры
+RunService.RenderStepped:Connect(function(deltaTime)
+    if not debugEnabled then return end
+    
+    -- Определяем текущую скорость
+    local currentSpeed = cameraSpeed
+    if UserInputService:IsKeyDown(Enum.KeyCode.LeftAlt) then
+        currentSpeed = currentSpeed * slowSpeedMultiplier
+    elseif UserInputService:IsKeyDown(Enum.KeyCode.LeftShift) then
+        currentSpeed = currentSpeed * fastSpeedMultiplier
+    end
+    
+    -- Обработка вращения камеры мышью
+    local mouseDelta = UserInputService:GetMouseDelta()
+    yaw = yaw - mouseDelta.X * 0.01 * mouseSensitivity
+    pitch = math.clamp(pitch - mouseDelta.Y * 0.01 * mouseSensitivity, -math.pi/2 + 0.1, math.pi/2 - 0.1)
+    
+    -- Создаем новую ориентацию камеры
+    local newCFrame = CFrame.new(camera.CFrame.Position) * 
+                     CFrame.fromOrientation(pitch, yaw, 0)
+    
+    -- Движение камеры
+    local moveVector = Vector3.new(0, 0, 0)
+    
+    if UserInputService:IsKeyDown(moveKeys.forward) then
+        moveVector = moveVector + newCFrame.LookVector
+    end
+    if UserInputService:IsKeyDown(moveKeys.backward) then
+        moveVector = moveVector - newCFrame.LookVector
+    end
+    if UserInputService:IsKeyDown(moveKeys.left) then
+        moveVector = moveVector - newCFrame.RightVector
+    end
+    if UserInputService:IsKeyDown(moveKeys.right) then
+        moveVector = moveVector + newCFrame.RightVector
+    end
+    if UserInputService:IsKeyDown(moveKeys.up) then
+        moveVector = moveVector + Vector3.new(0, 1, 0)
+    end
+    if UserInputService:IsKeyDown(moveKeys.down) then
+        moveVector = moveVector - Vector3.new(0, 1, 0)
+    end
+    
+    -- Применяем движение
+    if moveVector.Magnitude > 0 then
+        moveVector = moveVector.Unit * currentSpeed * deltaTime
+        newCFrame = newCFrame + moveVector
+    end
+    
+    -- Обновляем позицию и поворот камеры
+    camera.CFrame = newCFrame
+    
+    -- Изменение FOV колесиком мыши
+    local mouseWheel = UserInputService:GetMouseWheel()
+    if mouseWheel ~= 0 then
+        camera.FieldOfView = math.clamp(camera.FieldOfView - mouseWheel * 2, 5, 120)
+    end
+end)
+
+-- Автоматическое отключение debug-камеры при смерти
+Player.CharacterAdded:Connect(function(character)
+    character:WaitForChild("Humanoid").Died:Connect(function()
+        disableDebugCamera()
+    end)
+end)
+
+local Section = Tab:CreateSection("Visual")
+
+local Toggle = Tab:CreateToggle({
+   Name = "Blur",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(state)
+    if state then
+        local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/ThirdScripts/Blur/refs/heads/main/blur.lua"))()
+    else
+        game:GetService("Lighting"):ClearAllChildren()
+    end
+   end,
+})
+
+local Slider = Tab:CreateSlider({
+   Name = "Resolution",
+   Range = {0, 1},
+   Increment = 0.1,
+   Suffix = "Resolution",
+   CurrentValue = 1,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+getgenv().Resolution = {
+    [".gg/scripters"] = Value
+}
+
+local Camera = workspace.CurrentCamera
+if getgenv().gg_scripters == nil then
+    game:GetService("RunService").RenderStepped:Connect(
+        function()
+            Camera.CFrame = Camera.CFrame * CFrame.new(0, 0, 0, 1, 0, 0, 0, getgenv().Resolution[".gg/scripters"], 0, 0, 0, 1)
+        end
+    )
+end
+getgenv().gg_scripters = "Aori0001"
+   end,
+})
+
+local Toggle = Tab:CreateToggle({
+   Name = "Fullbright",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(state)
+    if state then
+        _G.LightingEnabled = true
+
+local Lighting = game:GetService("Lighting")
+
+if _G.LightingEnabled then
+  
+    Lighting.Ambient = Color3.new(1, 1, 1)
+    Lighting.Brightness = 2
+    Lighting.OutdoorAmbient = Color3.new(1, 1, 1)
+    Lighting.FogEnd = 1e10
+
+   
+    Lighting:GetPropertyChangedSignal("Ambient"):Connect(function()
+        if _G.LightingEnabled then
+            Lighting.Ambient = Color3.new(1, 1, 1)
+        end
+    end)
+
+    Lighting:GetPropertyChangedSignal("Brightness"):Connect(function()
+        if _G.LightingEnabled then
+            Lighting.Brightness = 2
+        end
+    end)
+
+    Lighting:GetPropertyChangedSignal("OutdoorAmbient"):Connect(function()
+        if _G.LightingEnabled then
+            Lighting.OutdoorAmbient = Color3.new(1, 1, 1)
+        end
+    end)
+
+    Lighting:GetPropertyChangedSignal("FogEnd"):Connect(function()
+        if _G.LightingEnabled then
+            Lighting.FogEnd = 1e10
+        end
+    end)
+end
+
+    else
+        _G.LightingEnabled = false
+
+local Lighting = game:GetService("Lighting")
+
+-- Устанавливаем чуть более светлый нейтральный свет
+Lighting.Ambient = Color3.new(0.7, 0.7, 0.7) -- Легкий серый оттенок
+Lighting.Brightness = 1 -- Стандартная яркость
+Lighting.OutdoorAmbient = Color3.new(0.7, 0.7, 0.7) -- Тот же светлый серый
+Lighting.FogEnd = 100000 -- Ограничение на дальность тумана
+
+    end
+   end,
+})
+
+local Section = Tab:CreateSection("Trail")
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local player = Players.LocalPlayer
+
+-- Настройки по умолчанию
+local trailSettings = {
+    Enabled = false,
+    Color = Color3.fromRGB(0, 255, 0),
+    Height = 0,    -- 0 = уровень rootpart, >0 = выше, <0 = ниже
+    Width = 0.03,  -- Толщина трейла
+    Lifetime = 0.2 -- Длина следа
+}
+
+local trailObj, attach1, attach2
+
+-- Функция создания/обновления трейла
+local function updateTrail(character)
+    if not character then return end
+    
+    -- Удаляем старые объекты
+    if trailObj then trailObj:Destroy() end
+    if attach1 then attach1:Destroy() end
+    if attach2 then attach2:Destroy() end
+    
+    local root = character:WaitForChild("HumanoidRootPart")
+    if not root then return end
+    
+    -- Создаем аттачменты
+    attach1 = Instance.new("Attachment")
+    attach1.Name = "TrailAttachment1"
+    attach1.Parent = root
+    attach1.CFrame = CFrame.new(0, trailSettings.Height, 0)
+    
+    attach2 = Instance.new("Attachment")
+    attach2.Name = "TrailAttachment2"
+    attach2.Parent = root
+    attach2.CFrame = CFrame.new(0, trailSettings.Height - 0.05, 0) -- Чуть ниже
+    
+    -- Создаем трейл
+    trailObj = Instance.new("Trail")
+    trailObj.Name = "CustomTrail"
+    trailObj.Attachment0 = attach1
+    trailObj.Attachment1 = attach2
+    trailObj.Color = ColorSequence.new(trailSettings.Color)
+    trailObj.LightEmission = 0.5
+    trailObj.Transparency = NumberSequence.new(0.3)
+    trailObj.Lifetime = trailSettings.Lifetime
+    trailObj.MinLength = 0.01
+    trailObj.WidthScale = NumberSequence.new(trailSettings.Width)
+    trailObj.Parent = root
+end
+
+-- Обработчик респавна
+local function onCharacterAdded(character)
+    if trailSettings.Enabled then
+        updateTrail(character)
+    end
+end
+
+-- Toggle
+local Toggle = Tab:CreateToggle({
+    Name = "Trail",
+    CurrentValue = trailSettings.Enabled,
+    Flag = "TrailToggle",
+    Callback = function(value)
+        trailSettings.Enabled = value
+        if value then
+            if player.Character then
+                updateTrail(player.Character)
+            end
+        else
+            if trailObj then trailObj:Destroy() end
+            if attach1 then attach1:Destroy() end
+            if attach2 then attach2:Destroy() end
+        end
+    end
+})
+
+-- ColorPicker
+local ColorPicker = Tab:CreateColorPicker({
+    Name = "Trail color",
+    Color = trailSettings.Color,
+    Flag = "TrailColor",
+    Callback = function(color)
+        trailSettings.Color = color
+        if trailSettings.Enabled and trailObj then
+            trailObj.Color = ColorSequence.new(color)
+        end
+    end
+})
+
+-- Slider для высоты
+local HeightSlider = Tab:CreateSlider({
+    Name = "Trail height",
+    Range = {-3, 2},  -- От -2 до +2
+    Increment = 0.1,
+    CurrentValue = trailSettings.Height,
+    Flag = "TrailHeight",
+    Callback = function(value)
+        trailSettings.Height = value
+        if trailSettings.Enabled and player.Character then
+            updateTrail(player.Character)
+        end
+    end
+})
+
+-- Slider для ширины
+local WidthSlider = Tab:CreateSlider({
+    Name = "Trail width",
+    Range = {0.5, 3},  -- От 0.01 до 0.5
+    Increment = 0.01,
+    CurrentValue = trailSettings.Width,
+    Flag = "TrailWidth",
+    Callback = function(value)
+        trailSettings.Width = value
+        if trailSettings.Enabled and trailObj then
+            trailObj.WidthScale = NumberSequence.new(value)
+        end
+    end
+})
+
+-- Slider для длины следа
+local LifetimeSlider = Tab:CreateSlider({
+    Name = "Trail life time",
+    Range = {0.05, 1},  -- От 0.05 до 1
+    Increment = 0.05,
+    CurrentValue = trailSettings.Lifetime,
+    Flag = "TrailLifetime",
+    Callback = function(value)
+        trailSettings.Lifetime = value
+        if trailSettings.Enabled and trailObj then
+            trailObj.Lifetime = value
+        end
+    end
+})
+
+-- Инициализация
+player.CharacterAdded:Connect(onCharacterAdded)
+if player.Character then
+    onCharacterAdded(player.Character)
+end
+
+local Section = Tab:CreateSection("Localplayer")
+
+local Players = game:GetService("Players")
+local localPlayer = Players.LocalPlayer
+local character = localPlayer.Character or localPlayer.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+-- Глобальные настройки
+local originalMaterials = {}
+local originalFace = nil
+local originalHRPTransparency
+local currentColor = Color3.fromRGB(255, 255, 255)
+local forceFieldEnabled = false
+
+-- Сохраняем оригинальные данные
+local function saveOriginalAssets()
+    originalMaterials = {}
+    
+    for _, part in ipairs(character:GetDescendants()) do
+        if part:IsA("BasePart") then
+            originalMaterials[part] = {
+                Material = part.Material,
+                Transparency = part.Transparency,
+                Color = part.Color
+            }
+            
+            if part.Name == "HumanoidRootPart" then
+                originalHRPTransparency = part.Transparency
+            end
+        end
+    end
+    
+    -- Сохраняем лицо
+    local head = character:FindFirstChild("Head")
+    if head then
+        for _, decal in ipairs(head:GetChildren()) do
+            if decal:IsA("Decal") and decal.Name == "face" then
+                originalFace = decal:Clone()
+                break
+            end
+        end
+    end
+end
+
+-- Применяем ForceField ко всем частям и аксессуарам
+local function applyForceField()
+    for part, _ in pairs(originalMaterials) do
+        if part:IsA("BasePart") then
+            part.Material = Enum.Material.ForceField
+            part.Color = currentColor
+            part.Transparency = 0
+            
+            if part.Name == "HumanoidRootPart" then
+                part.Transparency = 1 -- Полностью скрываем
+            end
+        end
+    end
+    
+    -- Обрабатываем аксессуары
+    for _, accessory in ipairs(character:GetChildren()) do
+        if accessory:IsA("Accessory") then
+            local handle = accessory:FindFirstChild("Handle")
+            if handle then
+                handle.Material = Enum.Material.ForceField
+                handle.Color = currentColor
+                handle.Transparency = 0
+            end
+        end
+    end
+    
+    -- Удаляем лицо
+    local head = character:FindFirstChild("Head")
+    if head then
+        for _, decal in ipairs(head:GetChildren()) do
+            if decal:IsA("Decal") and decal.Name == "face" then
+                decal:Destroy()
+            end
+        end
+    end
+end
+
+-- Восстанавливаем оригинальные материалы
+local function restoreOriginalAssets()
+    for part, data in pairs(originalMaterials) do
+        if part:IsA("BasePart") then
+            part.Material = data.Material
+            part.Color = data.Color
+            part.Transparency = data.Transparency
+        end
+    end
+    
+    -- Восстанавливаем HumanoidRootPart
+    local hrp = character:FindFirstChild("HumanoidRootPart")
+    if hrp and originalHRPTransparency then
+        hrp.Transparency = originalHRPTransparency
+    end
+    
+    -- Восстанавливаем лицо
+    local head = character:FindFirstChild("Head")
+    if head and originalFace then
+        for _, decal in ipairs(head:GetChildren()) do
+            if decal:IsA("Decal") and decal.Name == "face" then
+                decal:Destroy()
+            end
+        end
+        originalFace:Clone().Parent = head
+    end
+    
+    -- Восстанавливаем аксессуары
+    for _, accessory in ipairs(character:GetChildren()) do
+        if accessory:IsA("Accessory") then
+            local handle = accessory:FindFirstChild("Handle")
+            if handle and originalMaterials[handle] then
+                handle.Material = originalMaterials[handle].Material
+                handle.Color = originalMaterials[handle].Color
+                handle.Transparency = originalMaterials[handle].Transparency
+            end
+        end
+    end
+end
+
+-- Обновляем цвет всех частей
+local function updateColor(newColor)
+    currentColor = newColor
+    
+    for _, part in ipairs(character:GetDescendants()) do
+        if part:IsA("BasePart") then
+            part.Color = currentColor
+        end
+    end
+    
+    -- Обновляем цвет аксессуаров
+    for _, accessory in ipairs(character:GetChildren()) do
+        if accessory:IsA("Accessory") then
+            local handle = accessory:FindFirstChild("Handle")
+            if handle then
+                handle.Color = currentColor
+            end
+        end
+    end
+end
+
+-- Обработчик смены персонажа
+local function onCharacterAdded(newCharacter)
+    character = newCharacter
+    humanoid = character:WaitForChild("Humanoid")
+    
+    -- Ждем полной загрузки персонажа
+    character:WaitForChild("HumanoidRootPart")
+    
+    -- Сохраняем оригинальные данные
+    saveOriginalAssets()
+    
+    -- Применяем текущие настройки
+    if forceFieldEnabled then
+        applyForceField()
+    else
+        restoreOriginalAssets()
+        updateColor(currentColor) -- Применяем текущий цвет
+    end
+    
+    -- Обработчик смерти
+    humanoid.Died:Connect(function()
+        task.wait(2) -- Ждем респавна
+    end)
+end
+
+-- Инициализация
+saveOriginalAssets()
+
+-- Подписываемся на события
+localPlayer.CharacterAdded:Connect(onCharacterAdded)
+
+-- UI элементы
+local Toggle = Tab:CreateToggle({
+    Name = "ForceField Material",
+    CurrentValue = forceFieldEnabled,
+    Flag = "ForceFieldToggle",
+    Callback = function(Value)
+        forceFieldEnabled = Value
+        if Value then
+            applyForceField()
+        else
+            restoreOriginalAssets()
+        end
+        updateColor(currentColor) -- Обновляем цвет в любом случае
+    end,
+})
+
+local ColorPicker = Tab:CreateColorPicker({
+    Name = "Player Color",
+    Color = currentColor,
+    Flag = "PlayerColorPicker",
+    Callback = function(Value)
+        currentColor = Value
+        updateColor(Value)
+    end
+})
+
+local players = game:GetService("Players")
+local runService = game:GetService("RunService")
+
+-- заранее объявляем переменные
+local Toggle, Slider, ColorPicker
+local clientPredictionRootPart
+
+-- Основной код
+local player = players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart") :: Part
+
+clientPredictionRootPart = Instance.new("Part")
+clientPredictionRootPart.Name = "PingPredictionPart"
+clientPredictionRootPart.Anchored = true
+clientPredictionRootPart.CanCollide = false
+clientPredictionRootPart.CanTouch = false
+clientPredictionRootPart.CanQuery = false
+clientPredictionRootPart.EnableFluidForces = false
+clientPredictionRootPart.Massless = true
+clientPredictionRootPart.Locked = true
+clientPredictionRootPart.Material = Enum.Material.SmoothPlastic
+clientPredictionRootPart.Size = Vector3.new(2, 2, 1)
+clientPredictionRootPart.CastShadow = false
+clientPredictionRootPart.Parent = character
+
+local connection = runService.Heartbeat:Connect(function()
+    if not Toggle or not Toggle.CurrentValue or not clientPredictionRootPart or clientPredictionRootPart.Transparency == 1 then
+        return
+    end
+    
+    local savedCFrame = humanoidRootPart.CFrame
+    local ping = player:GetNetworkPing()
+    task.wait(ping * 2)
+    if clientPredictionRootPart then
+        clientPredictionRootPart.CFrame = savedCFrame
+    end
+end)
+
+player.CharacterAdded:Connect(function(newChar)
+    character = newChar
+    humanoidRootPart = character:WaitForChild("HumanoidRootPart") :: Part
+    
+    if clientPredictionRootPart then
+        clientPredictionRootPart:Destroy()
+    end
+    
+    clientPredictionRootPart = Instance.new("Part")
+    clientPredictionRootPart.Name = "PingPredictionPart"
+    clientPredictionRootPart.Anchored = true
+    clientPredictionRootPart.CanCollide = false
+    clientPredictionRootPart.CanTouch = false
+    clientPredictionRootPart.CanQuery = false
+    clientPredictionRootPart.EnableFluidForces = false
+    clientPredictionRootPart.Massless = true
+    clientPredictionRootPart.Locked = true
+    clientPredictionRootPart.Material = Enum.Material.SmoothPlastic
+    clientPredictionRootPart.Size = Vector3.new(2, 2, 1)
+    clientPredictionRootPart.CastShadow = false
+    clientPredictionRootPart.Parent = character
+
+    if ColorPicker then
+        clientPredictionRootPart.Color = ColorPicker.CurrentValue
+    end
+    if Toggle and Slider then
+        clientPredictionRootPart.Transparency = Toggle.CurrentValue and Slider.CurrentValue or 1
+    else
+        clientPredictionRootPart.Transparency = 1
+    end
+end)
+
+-- Функция очистки (если надо вручную вызвать)
+local function cleanup()
+    if connection then connection:Disconnect() end
+    if clientPredictionRootPart then clientPredictionRootPart:Destroy() end
+end
+
+-- UI элементы создаём после Tab
+Toggle = Tab:CreateToggle({
+    Name = "Ping Prediction",
+    CurrentValue = false,
+    Flag = "PingPredictionToggle",
+    Callback = function(Value)
+        if clientPredictionRootPart then
+            clientPredictionRootPart.Transparency = Value and Slider.CurrentValue or 1
+        end
+    end
+})
+
+Slider = Tab:CreateSlider({
+    Name = "Prediction Transparency",
+    Range = {0, 1},
+    Increment = 0.1,
+    Suffix = "%",
+    CurrentValue = 0.5,
+    Flag = "TransparencySlider",
+    Callback = function(Value)
+        if clientPredictionRootPart and Toggle.CurrentValue then
+            clientPredictionRootPart.Transparency = Value
+        end
+    end
+})
+
+ColorPicker = Tab:CreateColorPicker({
+    Name = "Prediction Color",
+    Color = Color3.fromRGB(255, 0, 0),
+    Flag = "PredictionColorPicker",
+    Callback = function(Value)
+        if clientPredictionRootPart then
+            clientPredictionRootPart.Color = Value
+        end
+    end
+})
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local coneColor = Color3.fromRGB(255, 0, 137) -- Начальный цвет (розовый)
+local conePart = nil -- Хранит текущий конус
+
+-- Функция для создания конуса
+local function createCone(character)
+    if not character or not character:FindFirstChild("Head") then return end
+
+    -- Удаляем старый конус, если он есть
+    if conePart and conePart.Parent then
+        conePart:Destroy()
+    end
+
+    local head = character.Head
+
+    -- Создаём конус
+    conePart = Instance.new("Part")
+    conePart.Name = "ChinaHat"
+    conePart.Size = Vector3.new(1, 1, 1)
+    conePart.BrickColor = BrickColor.new("White")
+    conePart.Transparency = 0.3
+    conePart.Anchored = false
+    conePart.CanCollide = false
+
+    local mesh = Instance.new("SpecialMesh", conePart)
+    mesh.MeshType = Enum.MeshType.FileMesh
+    mesh.MeshId = "rbxassetid://1033714"
+    mesh.Scale = Vector3.new(1.7, 1.1, 1.7)
+
+    local weld = Instance.new("Weld")
+    weld.Part0 = head
+    weld.Part1 = conePart
+    weld.C0 = CFrame.new(0, 0.9, 0)
+
+    -- Добавляем Highlight
+    local highlight = Instance.new("Highlight", conePart)
+    highlight.FillColor = coneColor
+    highlight.FillTransparency = 0.5
+    highlight.OutlineColor = coneColor
+    highlight.OutlineTransparency = 0
+
+    conePart.Parent = character
+    weld.Parent = conePart
+
+    return conePart
+end
+
+-- Проверяем наличие конуса и пересоздаём при необходимости
+local function checkCone()
+    if not player.Character then return end
+    
+    local hatExists = player.Character:FindFirstChild("ChinaHat") or false
+    if not hatExists then
+        createCone(player.Character)
+    else
+        -- Обновляем цвет, если конус уже есть
+        local highlight = player.Character.ChinaHat:FindFirstChild("Highlight")
+        if highlight then
+            highlight.FillColor = coneColor
+            highlight.OutlineColor = coneColor
+        end
+    end
+end
+
+-- Автоматическое пересоздание при респавне
+player.CharacterAdded:Connect(function(character)
+    createCone(character)
+    
+    -- Проверяем конус каждую секунду (на случай удаления)
+    while character and character:IsDescendantOf(game) do
+        checkCone()
+        task.wait(1) -- Проверка каждую секунду
+    end
+end)
+
+-- Если персонаж уже есть при запуске скрипта
+if player.Character then
+    createCone(player.Character)
+end
+
+-- ColorPicker (пример для вашего UI)
+local ColorPicker = Tab:CreateColorPicker({
+    Name = "China hat",
+    Color = coneColor,
+    Flag = "ColorPicker1",
+    Callback = function(color)
+        coneColor = color
+        checkCone() -- Обновляем цвет при изменении
+    end
+})
+
+local Tab = Window:CreateTab("Misc", "boxes") -- Title, Image
+local Section = Tab:CreateSection("Character")
+
+local Button = Tab:CreateButton({
+   Name = "Reset",
+   Callback = function()
+    game.workspace[game.Players.LocalPlayer.Name].Head:Destroy()
+end,
+})  
+
+local Button = Tab:CreateButton({
+   Name = "Destroy shirt and paints",
+   Callback = function()
+game.Players.LocalPlayer.Character.Shirt:destroy()
+game.Players.LocalPlayer.Character.Pants:destroy()
+end,
+})  
+
+local Section = Tab:CreateSection("Tools")
+
+local Button = Tab:CreateButton({
+   Name = "JerkOff (r6)",
+   Callback = function()
+loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))("Spider Script")
+end,
+})  
+
+local Button = Tab:CreateButton({
+   Name = "Click TP",
+   Callback = function()
+mouse = game.Players.LocalPlayer:GetMouse()
+tool = Instance.new("Tool")
+tool.RequiresHandle = false
+tool.Name = "Click Teleport"
+tool.Activated:connect(function()
+local pos = mouse.Hit+Vector3.new(0,2.5,0)
+pos = CFrame.new(pos.X,pos.Y,pos.Z)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+end)
+tool.Parent = game.Players.LocalPlayer.Backpack
+end,
+})  
+
+local Section = Tab:CreateSection("Scripts")
+
+local Button = Tab:CreateButton({
+   Name = "Infinite Yield",
+   Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end,
+})  
+
+local Button = Tab:CreateButton({
+   Name = "System Broken",
+   Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/H20CalibreYT/SystemBroken/main/script"))()
+end,
+})  
+
+local Tab = Window:CreateTab("Sky", "cloud") -- Title, Image
+local Section = Tab:CreateSection("Sky Custom")
+
+local Button = Tab:CreateButton({
+   Name = "Moon Sky",
+   Callback = function()
+local sky = Instance.new("Sky")
+sky.Name = "ColorfulSky"
+sky.SkyboxBk = "rbxassetid://159454299"
+sky.SkyboxDn = "rbxassetid://159454296"
+sky.SkyboxFt = "rbxassetid://159454293"
+sky.SkyboxLf = "rbxassetid://159454286"
+sky.SkyboxRt = "rbxassetid://159454300"
+sky.SkyboxUp = "rbxassetid://159454288"
+sky.SunAngularSize = 21
+sky.SunTextureId = ""
+sky.MoonTextureId = ""
+sky.Parent = game.Lighting
+
+-- Texto no canto superior esquerdo
+local player = game.Players.LocalPlayer
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "SkyboxChangerLabelUI"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+local nameLabel = Instance.new("TextLabel")
+nameLabel.Size = UDim2.new(0, 230, 0, 18)
+nameLabel.Position = UDim2.new(0, 10, 0, 8)
+nameLabel.BackgroundTransparency = 1
+nameLabel.Text = ""
+nameLabel.TextColor3 = Color3.new(1, 1, 1)
+nameLabel.Font = Enum.Font.Code
+nameLabel.TextSize = 13
+nameLabel.TextXAlignment = Enum.TextXAlignment.Left
+nameLabel.Parent = screenGui
+end,
+}) 
+
+local Section = Tab:CreateSection("Sky Settings")
+
+local Lighting = game:GetService("Lighting")
+local UserInputService = game:GetService("UserInputService")
+
+local Lighting = game:GetService("Lighting")
+local UserInputService = game:GetService("UserInputService")
+
+-- Настройки дня и ночи
+local daySettings = {
+    ClockTime = 14,
+    Ambient = Color3.fromRGB(178, 178, 178),
+}
+
+local nightSettings = {
+    ClockTime = 0,
+    Ambient = Color3.fromRGB(50, 50, 50),
+}
+
+local isDay = true
+
+-- Функция переключения дня и ночи
+local function toggleDayNight()
+    isDay = not isDay
+    
+    if isDay then
+        for property, value in pairs(daySettings) do
+            Lighting[property] = value
+        end
+    else
+        for property, value in pairs(nightSettings) do
+            Lighting[property] = value
+        end
+    end
+end
+
+-- Создаем Keybind для переключения (предполагая, что Tab уже определен)
+local DayNightKeybind = Tab:CreateKeybind({
+    Name = "Day/Night",
+    CurrentKeybind = "K",
+    HoldToInteract = false,
+    Flag = "DayNightKeybind",
+    Callback = function()
+        toggleDayNight()
+    end,
+})
+
+local Tab = Window:CreateTab("Settings/Credits", "settings") -- Title, Image
+local Section = Tab:CreateSection("Credits")
+
+local Label = Tab:CreateLabel("Created by Immortal")
+local Label = Tab:CreateLabel("You rank: vip")
+local Label = Tab:CreateLabel("Version 3.23")
+
+local Section = Tab:CreateSection("Watermark")
+
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local Stats = game:GetService("Stats")
+
+-- параметры watermark
+local wmX, wmY = 100, 100
+local width, height = 260, 22 -- сделал чуть выше (22 вместо 20)
+
+-- фон (тёмно-серый прямоугольник)
+local background = Drawing.new("Square")
+background.Visible = true
+background.Color = Color3.fromRGB(25, 25, 25) -- был чёрный, теперь серо-тёмный
+background.Filled = true
+background.Transparency = 1 -- 1 = полностью видимый
+background.Size = Vector2.new(width, height)
+
+-- градиентная полоска (будем рисовать линиями)
+local gradientLines = {}
+local gradientHeight = height
+for i = 1, gradientHeight do
+    local line = Drawing.new("Line")
+    line.Visible = true
+    line.Thickness = 2
+    table.insert(gradientLines, line)
+end
+
+-- текст
+local watermark = Drawing.new("Text")
+watermark.Size = 16
+watermark.Color = Color3.fromRGB(255, 255, 255)
+watermark.Outline = true
+watermark.Font = 2
+watermark.Center = false
+watermark.Visible = true
+
+-- функция для интерполяции цвета (градиент)
+local function lerpColor(c1, c2, t)
+    return Color3.new(
+        c1.R + (c2.R - c1.R) * t,
+        c1.G + (c2.G - c1.G) * t,
+        c1.B + (c2.B - c1.B) * t
+    )
+end
+
+-- обновление watermark
+local function updateWatermark()
+    local player = Players.LocalPlayer
+    local nickname = player and player.Name or "Unknown"
+
+    -- пинг
+    local ping = math.floor(Stats.Network.ServerStatsItem["Data Ping"]:GetValue()) 
+    local timeStr = os.date("%H:%M:%S")
+
+    -- текст
+    watermark.Text = "gamesense | " .. nickname .. " | delay: " .. ping .. "ms | " .. timeStr
+
+    -- авто-ширина по тексту
+    local textLen = watermark.TextBounds.X + 20
+    background.Size = Vector2.new(textLen, height)
+
+    -- позиции
+    background.Position = Vector2.new(wmX, wmY)
+    watermark.Position = Vector2.new(wmX + 6, wmY + 2)
+
+    -- градиент полоски (зелёный → оранжевый)
+    local topColor = Color3.fromRGB(0, 255, 0)
+    local bottomColor = Color3.fromRGB(255, 128, 0)
+
+    for i, line in ipairs(gradientLines) do
+        local t = i / gradientHeight
+        local col = lerpColor(topColor, bottomColor, t)
+        line.Color = col
+        line.From = Vector2.new(wmX - 2, wmY + i)
+        line.To = Vector2.new(wmX, wmY + i)
+    end
+end
+
+RunService.RenderStepped:Connect(updateWatermark)
+
+-- слайдер X
+local SliderX = Tab:CreateSlider({
+   Name = "Watermark X",
+   Range = {0, 1920}, -- FHD
+   Increment = 5,
+   Suffix = "px",
+   CurrentValue = wmX,
+   Flag = "WM_X",
+   Callback = function(Value)
+       wmX = Value
+   end,
+})
+
+-- слайдер Y
+local SliderY = Tab:CreateSlider({
+   Name = "Watermark Y",
+   Range = {0, 1080}, -- FHD
+   Increment = 5,
+   Suffix = "px",
+   CurrentValue = wmY,
+   Flag = "WM_Y",
+   Callback = function(Value)
+       wmY = Value
+   end,
+})
+
+
+
+local Section = Tab:CreateSection("Settings")
+
+local Button = Tab:CreateButton({
+   Name = "Unlock Camera",
+   Callback = function()
+Players.LocalPlayer.CameraMode = Enum.CameraMode.Classic
+    end,
+    })
+
+
+local Button = Tab:CreateButton({
+    Name = "Keystrokes",
+    Callback = function()
+        loadstring(game:HttpGet("https://github.com/TheXploiterYT/scripts/raw/main/keystrokes",true))()
+    end,
+})
+
+local speedEnabled = false
+local Keybind = Tab:CreateKeybind({
+    Name = "SpeedMod",
+    CurrentKeybind = "L",
+    HoldToInteract = false, -- Режим переключателя
+    Flag = "SpeedToggleKeybind",
+    Callback = function()
+        speedEnabled = not speedEnabled
+        local humanoid = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+        if humanoid then
+            humanoid.WalkSpeed = speedEnabled and 60 or 16
+        end
+    end,
+})
+
+local Button = Tab:CreateButton({
+    Name = "Panic",
+    Callback = function()
+        Rayfield:Destroy()
+    end,
+})
