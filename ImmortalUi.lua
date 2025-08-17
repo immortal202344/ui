@@ -139,7 +139,6 @@ local Input = Tab:CreateInput({
     local newRadius = tonumber(txt) -- Преобразуем введенный текст в число
     if newRadius and _G.FOVCircle then
         _G.FOVCircle.Radius = math.clamp(newRadius, 10, 500) -- Ограничиваем значение от 10 до 500
-        print("FOV Radius set to:", _G.FOVCircle.Radius)
     else
         warn("Invalid input! Please enter a number.")
     end
@@ -300,6 +299,29 @@ workspace.Gravity = s
 })
 
 local Section = Tab:CreateSection("Movement")
+
+local Keybind = Tab:CreateKeybind({
+   Name = "Teleport on mouse",
+   CurrentKeybind = "C", 
+   HoldToInteract = false,
+   Flag = "KeybindTP",
+   Callback = function()
+      local player = game.Players.LocalPlayer
+      local mouse = player:GetMouse()
+      local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
+
+      if hrp and mouse then
+         -- получаем позицию куда наведена мышка
+         local pos = mouse.Hit.Position
+         -- телепортируем
+         hrp.CFrame = CFrame.new(pos + Vector3.new(0, 3, 0)) -- чуть выше земли
+      end
+   end,
+})
+
+
+
+
 
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
@@ -533,6 +555,151 @@ local Dropdown = Tab:CreateDropdown({
     end,
 })
 
+local Tab = Window:CreateTab("Target", "target") -- Title, Image
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local Camera = workspace.CurrentCamera
+local SelectedTarget = nil
+
+local function GetPlayerNames()
+    local names = {}
+    for _, plr in ipairs(Players:GetPlayers()) do
+        if plr ~= LocalPlayer then
+            table.insert(names, plr.Name)
+        end
+    end
+    table.sort(names, function(a, b)
+        return a:lower() < b:lower()
+    end)
+    return names
+end
+
+
+-- Dropdown
+local Dropdown
+Dropdown = Tab:CreateDropdown({
+    Name = "Select Player",
+    Options = GetPlayerNames(),
+    CurrentOption = {},
+    MultipleOptions = false,
+    Flag = "PlayerDropdown",
+    Callback = function(Options)
+        local targetName = Options[1]
+        SelectedTarget = Players:FindFirstChild(targetName)
+        if SelectedTarget then
+        end
+    end,
+})
+
+-- Auto update player list
+Players.PlayerAdded:Connect(function()
+    Dropdown:Refresh(GetPlayerNames())
+end)
+Players.PlayerRemoving:Connect(function()
+    Dropdown:Refresh(GetPlayerNames())
+end)
+
+-- Teleport
+local function TeleportToPlayer(target)
+    if target and target.Character and target.Character:FindFirstChild("HumanoidRootPart") then
+        LocalPlayer.Character:MoveTo(target.Character.HumanoidRootPart.Position + Vector3.new(0,3,0))
+    end
+end
+
+-- Spectate toggle
+local Toggle = Tab:CreateToggle({
+    Name = "Spectate",
+    CurrentValue = false,
+    Flag = "SpectateToggle",
+    Callback = function(Value)
+        if Value then
+            if SelectedTarget and SelectedTarget.Character and SelectedTarget.Character:FindFirstChild("Humanoid") then
+                Camera.CameraSubject = SelectedTarget.Character:FindFirstChild("Humanoid")
+            end
+        else
+            if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
+                Camera.CameraSubject = LocalPlayer.Character:FindFirstChild("Humanoid")
+            end
+        end
+    end,
+})
+
+local function FlingPlayer(target)
+    local char = LocalPlayer.Character
+    if not char then return end
+
+    local hrp = char:FindFirstChild("HumanoidRootPart")
+    local thrp = target and target.Character and target.Character:FindFirstChild("HumanoidRootPart")
+    if not hrp or not thrp then return end
+
+    -- Save old position
+    local oldCFrame = hrp.CFrame
+
+    -- Enable collisions
+    for _, p in ipairs(char:GetDescendants()) do
+        if p:IsA("BasePart") then
+            p.CanCollide = true
+            p.Massless = false
+        end
+    end
+
+    -- Create BodyVelocity
+    local bv = Instance.new("BodyVelocity")
+    bv.Velocity = Vector3.new(0,0,0)
+    bv.MaxForce = Vector3.new(9e9,9e9,9e9)
+    bv.Parent = hrp
+
+    -- Do fling inside target
+    local t0 = tick()
+    while tick() - t0 < 1.5 do
+        if not (target.Character and target.Character:FindFirstChild("HumanoidRootPart")) then break end
+        thrp = target.Character.HumanoidRootPart
+
+        -- Stay inside the target
+        hrp.CFrame = thrp.CFrame
+
+        -- Strong velocity bursts
+        bv.Velocity = Vector3.new(
+            math.random(-6000,6000),
+            math.random(6000,9000),
+            math.random(-6000,6000)
+        )
+
+        task.wait()
+    end
+
+    -- Cleanup and restore
+    bv:Destroy()
+    hrp.CFrame = oldCFrame
+    hrp.AssemblyLinearVelocity = Vector3.new(0,0,0)
+    hrp.AssemblyAngularVelocity = Vector3.new(0,0,0)
+end
+
+
+-- Teleport button
+Tab:CreateButton({
+    Name = "Teleport to Player",
+    Callback = function()
+        if SelectedTarget then
+            TeleportToPlayer(SelectedTarget)
+        else
+            warn("No player selected")
+        end
+    end,
+})
+
+-- Fling button
+Tab:CreateButton({
+    Name = "Fling Player",
+    Callback = function()
+        if SelectedTarget then
+            FlingPlayer(SelectedTarget)
+        else
+            warn("No player selected")
+        end
+    end,
+})
 
 local Tab = Window:CreateTab("Visual", "eye")
 local Section = Tab:CreateSection("WallHack")
@@ -1560,7 +1727,7 @@ local Section = Tab:CreateSection("Credits")
 
 local Label = Tab:CreateLabel("Created by Immortal")
 local Label = Tab:CreateLabel("You rank: vip")
-local Label = Tab:CreateLabel("Version 3.23")
+local Label = Tab:CreateLabel("Version 3.6")
 
 local Section = Tab:CreateSection("Watermark")
 
@@ -1642,6 +1809,40 @@ local function updateWatermark()
 end
 
 RunService.RenderStepped:Connect(updateWatermark)
+
+------------------------------------------------
+-- Drag & Drop логика (поверх watermark)
+------------------------------------------------
+local UserInputService = game:GetService("UserInputService")
+local dragging = false
+local dragOffset = Vector2.new(0, 0)
+
+UserInputService.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        local mouse = UserInputService:GetMouseLocation()
+        -- проверка: клик внутри watermark
+        if mouse.X >= wmX and mouse.X <= wmX + background.Size.X
+           and mouse.Y >= wmY and mouse.Y <= wmY + background.Size.Y then
+            dragging = true
+            dragOffset = Vector2.new(mouse.X - wmX, mouse.Y - wmY)
+        end
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+        local mouse = UserInputService:GetMouseLocation()
+        wmX = mouse.X - dragOffset.X
+        wmY = mouse.Y - dragOffset.Y
+    end
+end)
+
+UserInputService.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = false
+    end
+end)
+
 
 -- слайдер X
 local SliderX = Tab:CreateSlider({
