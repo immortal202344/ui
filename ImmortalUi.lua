@@ -1,6 +1,6 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 local Window = Rayfield:CreateWindow({
-   Name = "Gamesense.vip",
+   Name = "gamesense.vip",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "Vip Cheat",
    LoadingSubtitle = "by Immortal",
@@ -355,8 +355,6 @@ RunService.RenderStepped:Connect(function()
     end
 end)
 
-
-
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
@@ -365,7 +363,15 @@ local RunService = game:GetService("RunService")
 local WALK_SPEED = 16
 local BHOP_SPEED = 35
 local JUMP_COOLDOWN = 0.3
-local ROTATION_SPEED = 0.3
+
+-- ShakeBhop настройки
+local shakeAngle = 10  -- максимальный угол влево/вправо
+local shakeInterval = 0.01 -- как часто дёргается (секунды)
+local lastShake = 0
+local shakeDir = 1
+
+-- SpinBhop угол
+local spinAngle = 0
 
 -- Глобальное состояние
 local keys = {
@@ -377,8 +383,7 @@ local keys = {
 }
 local lastJumpTime = 0
 local isBunnyHopEnabled = false
-local wasInAir = false
-local bhopMode = "Forward" -- режим из Dropdown ("Forward" или "SpinBhop")
+local bhopMode = "Forward" -- ("Forward", "SpinBhop", "ShakeBhop")
 
 -- Переменные персонажа
 local humanoid, rootPart
@@ -391,7 +396,7 @@ local function initializeCharacter(newCharacter)
     rootPart = newCharacter:WaitForChild("HumanoidRootPart")
 
     humanoid.Died:Connect(function()
-        wasInAir = false
+        spinAngle = 0
     end)
 end
 
@@ -423,20 +428,13 @@ local function getCameraVectors()
     local camera = workspace.CurrentCamera
     if not camera then return Vector3.new(), Vector3.new() end
     
-    local forward = (camera.CFrame.LookVector * Vector3.new(1, 0, 1)).Unit
-    local right = (camera.CFrame.RightVector * Vector3.new(1, 0, 1)).Unit
-    return forward, right
-end
+    local forward = (camera.CFrame.LookVector * Vector3.new(1, 0, 1))
+    if forward.Magnitude > 0 then forward = forward.Unit else forward = Vector3.new(0,0,1) end
 
--- Плавный поворот к камере (работает только если bhop выключен)
-local function smoothRotateToCamera()
-    if not rootPart or isBunnyHopEnabled then return end 
-    local camera = workspace.CurrentCamera
-    if not camera then return end
-    
-    local lookVector = camera.CFrame.LookVector * Vector3.new(1, 0, 1)
-    local targetCFrame = CFrame.new(rootPart.Position, rootPart.Position + lookVector)
-    rootPart.CFrame = rootPart.CFrame:Lerp(targetCFrame, ROTATION_SPEED)
+    local right = (camera.CFrame.RightVector * Vector3.new(1, 0, 1))
+    if right.Magnitude > 0 then right = right.Unit else right = Vector3.new(1,0,0) end
+
+    return forward, right
 end
 
 -- Основной цикл
@@ -444,24 +442,16 @@ RunService.Heartbeat:Connect(function(dt)
     if not humanoid or not rootPart or humanoid.Health <= 0 then return end
 
     local currentState = humanoid:GetState()
-    local isInAir = currentState == Enum.HumanoidStateType.Jumping or currentState == Enum.HumanoidStateType.Freefall
+    local isInAir = currentState == Enum.HumanoidStateType.Jumping 
+                 or currentState == Enum.HumanoidStateType.Freefall
     local isGrounded = not isInAir
 
-    -- управляем AutoRotate
+    -- ✅ AutoRotate управление
     if isBunnyHopEnabled then
-        if isInAir then
-            humanoid.AutoRotate = false
-        else
-            humanoid.AutoRotate = true
-        end
+        humanoid.AutoRotate = isGrounded
     else
         humanoid.AutoRotate = true
     end
-
-    if isGrounded and wasInAir and keys.Space then
-        smoothRotateToCamera()
-    end
-    wasInAir = isInAir
 
     if isBunnyHopEnabled then
         local forward, right = getCameraVectors()
@@ -480,13 +470,31 @@ RunService.Heartbeat:Connect(function(dt)
             moveDirection = moveDirection.Unit * BHOP_SPEED * dt
 
             if bhopMode == "SpinBhop" then
-                rootPart.CFrame = rootPart.CFrame * CFrame.Angles(0, math.rad(10), 0)
-                rootPart.CFrame = rootPart.CFrame + moveDirection
+                spinAngle = spinAngle + math.rad(10) -- скорость вращения
+                rootPart.CFrame = CFrame.new(rootPart.Position + moveDirection) * CFrame.Angles(0, spinAngle, 0)
+
             elseif bhopMode == "Forward" then
-                rootPart.CFrame = CFrame.lookAt(rootPart.Position + moveDirection, rootPart.Position + moveDirection + forward)
+                rootPart.CFrame = CFrame.lookAt(
+                    rootPart.Position + moveDirection,
+                    rootPart.Position + moveDirection + forward
+                )
+
+            elseif bhopMode == "ShakeBhop" then
+                local now = tick()
+                if now - lastShake > shakeInterval then
+                    shakeDir = -shakeDir
+                    lastShake = now
+                end
+
+                local angle = math.rad(shakeAngle * shakeDir)
+                rootPart.CFrame = CFrame.lookAt(
+                    rootPart.Position + moveDirection,
+                    rootPart.Position + moveDirection + forward
+                ) * CFrame.Angles(0, angle, 0)
             end
         end
 
+        -- прыжки
         if keys.Space and isGrounded then
             local now = tick()
             if now - lastJumpTime > JUMP_COOLDOWN then
@@ -516,7 +524,7 @@ local Toggle = Tab:CreateToggle({
 -- Dropdown для выбора режима
 local Dropdown = Tab:CreateDropdown({
     Name = "Bhop Mode",
-    Options = {"SpinBhop", "Forward"},
+    Options = {"SpinBhop", "Forward", "ShakeBhop"},
     CurrentOption = {"Forward"},
     MultipleOptions = false,
     Flag = "BhopDropdown",
@@ -524,6 +532,7 @@ local Dropdown = Tab:CreateDropdown({
         bhopMode = Option[1]
     end,
 })
+
 
 local Tab = Window:CreateTab("Visual", "eye")
 local Section = Tab:CreateSection("WallHack")
