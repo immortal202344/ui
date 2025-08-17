@@ -387,13 +387,19 @@ local BHOP_SPEED = 35
 local JUMP_COOLDOWN = 0.3
 
 -- ShakeBhop настройки
-local shakeAngle = 10  -- максимальный угол влево/вправо
-local shakeInterval = 0.01 -- как часто дёргается (секунды)
+local shakeAngle = 10
+local shakeInterval = 0.01
 local lastShake = 0
 local shakeDir = 1
 
 -- SpinBhop угол
 local spinAngle = 0
+
+-- CircleBhop
+local isCircleHopActive = false
+local circleAngle = 0
+local circleSpeed = 6
+local lastJumpTime = 0
 
 -- Глобальное состояние
 local keys = {
@@ -403,7 +409,6 @@ local keys = {
     D = false,
     Space = false
 }
-local lastJumpTime = 0
 local isBunnyHopEnabled = false
 local bhopMode = "Forward" -- ("Forward", "SpinBhop", "ShakeBhop")
 
@@ -419,6 +424,7 @@ local function initializeCharacter(newCharacter)
 
     humanoid.Died:Connect(function()
         spinAngle = 0
+        circleAngle = 0
     end)
 end
 
@@ -459,6 +465,22 @@ local function getCameraVectors()
     return forward, right
 end
 
+-- ✅ UI элементы
+local Toggle = Tab:CreateToggle({
+    Name = "Bunny Hop",
+    CurrentValue = false,
+    Flag = "BunnyHopToggle",
+    Callback = function(Value)
+        isBunnyHopEnabled = Value
+        if humanoid then
+            humanoid.WalkSpeed = WALK_SPEED
+        end
+        if not Value then
+            for key in pairs(keys) do keys[key] = false end
+        end
+    end,
+})
+
 -- Основной цикл
 RunService.Heartbeat:Connect(function(dt)
     if not humanoid or not rootPart or humanoid.Health <= 0 then return end
@@ -468,14 +490,9 @@ RunService.Heartbeat:Connect(function(dt)
                  or currentState == Enum.HumanoidStateType.Freefall
     local isGrounded = not isInAir
 
-    -- ✅ AutoRotate управление
+    -- BunnyHop обычный
     if isBunnyHopEnabled then
         humanoid.AutoRotate = isGrounded
-    else
-        humanoid.AutoRotate = true
-    end
-
-    if isBunnyHopEnabled then
         local forward, right = getCameraVectors()
         local moveDirection = Vector3.new()
 
@@ -492,7 +509,7 @@ RunService.Heartbeat:Connect(function(dt)
             moveDirection = moveDirection.Unit * BHOP_SPEED * dt
 
             if bhopMode == "SpinBhop" then
-                spinAngle = spinAngle + math.rad(10) -- скорость вращения
+                spinAngle = spinAngle + math.rad(10)
                 rootPart.CFrame = CFrame.new(rootPart.Position + moveDirection) * CFrame.Angles(0, spinAngle, 0)
 
             elseif bhopMode == "Forward" then
@@ -525,23 +542,26 @@ RunService.Heartbeat:Connect(function(dt)
             end
         end
     end
+
+    -- 🔄 CircleHop (по бинду)
+    if isCircleHopActive then
+        humanoid.AutoRotate = false
+        circleAngle = circleAngle + circleSpeed * dt
+
+        -- поворот на месте
+        rootPart.CFrame = CFrame.new(rootPart.Position) * CFrame.Angles(0, circleAngle, 0)
+
+        -- прыжки
+        if not isInAir then
+            local now = tick()
+            if now - lastJumpTime > JUMP_COOLDOWN then
+                humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+                lastJumpTime = now
+            end
+        end
+    end
 end)
 
--- Toggle для управления
-local Toggle = Tab:CreateToggle({
-    Name = "Bunny Hop",
-    CurrentValue = false,
-    Flag = "BunnyHopToggle",
-    Callback = function(Value)
-        isBunnyHopEnabled = Value
-        if humanoid then
-            humanoid.WalkSpeed = WALK_SPEED
-        end
-        if not Value then
-            for key in pairs(keys) do keys[key] = false end
-        end
-    end,
-})
 
 -- Dropdown для выбора режима
 local Dropdown = Tab:CreateDropdown({
@@ -1720,6 +1740,51 @@ local DayNightKeybind = Tab:CreateKeybind({
     Callback = function()
         toggleDayNight()
     end,
+})
+
+-- 🌐 Tab Server Info
+local Tab = Window:CreateTab("Server") -- Title, Image
+
+-- Сервисы
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local MarketplaceService = game:GetService("MarketplaceService")
+local TeleportService = game:GetService("TeleportService")
+
+-- Название плейса
+local PlaceName = "Unknown Place"
+pcall(function()
+    local info = MarketplaceService:GetProductInfo(game.PlaceId)
+    PlaceName = info.Name or PlaceName
+end)
+
+-- Лейбл с названием плейса (⚡ без второго аргумента!)
+Tab:CreateLabel("Place: " .. PlaceName)
+
+-- 🔄 Кнопка Rejoin (тот же сервер)
+Tab:CreateButton({
+   Name = "Rejoin",
+   Callback = function()
+       local ok, err = pcall(function()
+           TeleportService:TeleportToPlaceInstance(game.PlaceId, game.JobId, LocalPlayer)
+       end)
+       if not ok then
+           warn("Rejoin failed:", err)
+       end
+   end,
+})
+
+-- 🌍 Кнопка Serverhop (другой сервер)
+Tab:CreateButton({
+   Name = "Serverhop",
+   Callback = function()
+       local ok, err = pcall(function()
+           TeleportService:Teleport(game.PlaceId, LocalPlayer)
+       end)
+       if not ok then
+           warn("Serverhop failed:", err)
+       end
+   end,
 })
 
 local Tab = Window:CreateTab("Settings/Credits", "settings") -- Title, Image
